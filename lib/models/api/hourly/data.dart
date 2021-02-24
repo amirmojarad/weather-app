@@ -1,17 +1,16 @@
 import 'package:weather/models/api/conditions/weather.dart';
 
-class CurrentWeather {
+class HourlyData {
   //Current time, Unix, UTC
   int dt;
-
-  //Sunrise and Sunrise time, Unix, UTC
-  int sunrise, sunset;
 
   // Temperature. Units - default: kelvin, metric: Celsius, imperial
   double temp;
   double feelsLike;
   int pressure;
   int humidity;
+
+  int pop;
 
   // Atmospheric temperature (varying according to pressure and humidity) below which water droplets begin to condense and dew can form. Units – default: kelvin, metric: Celsius, imperial: Fahrenheit.
   double dewPoint;
@@ -39,10 +38,8 @@ class CurrentWeather {
     this.time = DateTime.fromMillisecondsSinceEpoch(this.dt * 1000);
   }
 
-  CurrentWeather({
+  HourlyData({
     this.dt,
-    this.sunrise,
-    this.sunset,
     this.temp,
     this.feelsLike,
     this.pressure,
@@ -54,17 +51,17 @@ class CurrentWeather {
     this.windSpeed,
     this.windDeg,
     this.weather,
+    this.pop,
   });
 
-  factory CurrentWeather.fromJson(Map<String, dynamic> json) =>
-      _$CurrentWeatherFromJson(json);
+  factory HourlyData.fromJson(Map<String, dynamic> json) =>
+      _$HourlyDataFromJson(json);
 }
 
-CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
-  return CurrentWeather(
+HourlyData _$HourlyDataFromJson(Map<String, dynamic> json) {
+  return HourlyData(
+    pop: json["pop"],
     dt: json["dt"],
-    sunrise: json["sunrise"],
-    sunset: json["sunset"],
     temp: json["temp"],
     feelsLike: json["feels_like"],
     pressure: json["pressure"],
