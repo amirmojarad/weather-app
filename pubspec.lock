@@ -118,6 +118,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -131,7 +136,7 @@ packages:
     source: hosted
     version: "1.2.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
