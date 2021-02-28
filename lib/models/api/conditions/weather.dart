@@ -1,10 +1,10 @@
 import 'package:weather/models/json_interfaces/to_json.dart';
 
 class Weather implements ToJson {
-  int id;
-  String main;
-  String description;
-  String icon;
+  dynamic id;
+  dynamic main;
+  dynamic description;
+  dynamic icon;
 
   factory Weather.fromJson(Map<String, dynamic> json) =>
       _$WeatherFromJson(json);

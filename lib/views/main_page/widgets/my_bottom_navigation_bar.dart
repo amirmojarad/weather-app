@@ -1,88 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:weather/models/utils/device.dart';
 
-class MyBottomNavigationBar extends StatefulWidget {
-  int index = 0;
+import 'my_bottom_navigation_bar_item.dart';
 
-  MyBottomNavigationBar(this.index);
+class BottomNavBar extends StatefulWidget {
+  int currentIndex;
+  List<IconData> items;
+  PageController controller;
+
+  BottomNavBar({
+    this.currentIndex,
+    @required this.controller,
+    @required this.items,
+  });
 
   @override
-  _MyBottomNavigationBarState createState() =>
-      _MyBottomNavigationBarState(this.index);
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  int _index = 0;
+class _BottomNavBarState extends State<BottomNavBar> {
+  List<BottomNavBarItem> items = [];
 
-  _MyBottomNavigationBarState(this._index);
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: (index) {
-        setState(() {
-          _index = index;
-        });
-      },
-      elevation: 30,
-      backgroundColor: Colors.transparent,
-      iconSize: 30,
-      selectedIconTheme: IconThemeData(
-        color: Color(0xff006F9E),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color(0xff94FDFF),
+          Color(0xff5CF9FB),
+          Color(0xff5CF9FB),
+        ]),
+        borderRadius: BorderRadius.circular(29),
       ),
-      unselectedIconTheme: IconThemeData(
-        color: Color(0xff006F9E).withOpacity(0.5),
+      width: device.width - 100,
+      height: 75,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Center(
+            child: BottomNavBarItem(
+              currentIndex: widget.currentIndex,
+              index: index,
+              data: widget.items[index],
+              onTap: () {
+                setState(
+                  () {
+                    widget.controller.jumpToPage(index);
+                    widget.currentIndex = index;
+                  },
+                );
+              },
+            ),
+          );
+        },
+        itemCount: widget.items.length,
       ),
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: [
-        BottomNavigationBarItem(
-          icon: Column(
-            children: [
-              Icon(
-                Icons.search,
-              ),
-              _index == 0
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  : Container()
-            ],
-          ),
-          label: "ASD",
-        ),
-        BottomNavigationBarItem(
-          label: "Home",
-          icon: Column(
-            children: [
-              Icon(
-                Icons.location_city,
-              ),
-              _index == 1
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  : Container()
-            ],
-          ),
-        ),
-      ],
-      currentIndex: _index,
     );
   }
 }

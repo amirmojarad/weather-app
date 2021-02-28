@@ -14,7 +14,7 @@ class _WeatherAppState extends State<WeatherApp> {
     return MaterialApp(
       supportedLocales: [
         Locale('en', 'US'),
-        Locale('sk', 'SK'),
+        Locale('fa', 'FA'),
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,

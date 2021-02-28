@@ -2,33 +2,33 @@ import 'package:weather/models/api/conditions/weather.dart';
 
 class HourlyData {
   //Current time, Unix, UTC
-  int dt;
+  dynamic dt;
 
   // Temperature. Units - default: kelvin, metric: Celsius, imperial
-  double temp;
-  double feelsLike;
-  int pressure;
-  int humidity;
+  dynamic temp;
+  dynamic feelsLike;
+  dynamic pressure;
+  dynamic humidity;
 
-  int pop;
+  dynamic pop;
 
   // Atmospheric temperature (varying according to pressure and humidity) below which water droplets begin to condense and dew can form. Units – default: kelvin, metric: Celsius, imperial: Fahrenheit.
-  double dewPoint;
+  dynamic dewPoint;
 
   // Cloudiness, %
-  int clouds;
+  dynamic clouds;
 
   // Current UV index
-  int uvi;
+  dynamic uvi;
 
   //Average visibility, metres
-  int visibility;
+  dynamic visibility;
 
   //Wind speed. Wind speed. Units – default: metre/sec, metric: metre/sec, imperial: miles/hour. How to change units used
-  int windSpeed;
+  dynamic windSpeed;
 
   //Wind direction, degrees (meteorological)
-  int windDeg;
+  dynamic windDeg;
 
   Weather weather;
 
@@ -60,7 +60,7 @@ class HourlyData {
 
 HourlyData _$HourlyDataFromJson(Map<String, dynamic> json) {
   return HourlyData(
-    pop: json["pop"],
+    // pop: json["pop"],
     dt: json["dt"],
     temp: json["temp"],
     feelsLike: json["feels_like"],
@@ -73,7 +73,7 @@ HourlyData _$HourlyDataFromJson(Map<String, dynamic> json) {
     windSpeed: json["wind_speed"],
     windDeg: json["wind_deg"],
     weather: Weather.fromJson(
-      json["weather"],
+      (json["weather"] as List)[0],
     ),
   );
 }

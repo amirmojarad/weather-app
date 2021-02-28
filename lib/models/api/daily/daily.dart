@@ -1,13 +1,13 @@
 class Daily {
-  int dt;
-  int sunrise, sunset;
-  int pressure;
-  int humidity;
-  double dewPoint;
-  double windSpeed;
-  int windDeg;
-  int clouds;
-  double pop;
-  double uvi;
+  dynamic dt;
+  dynamic sunrise, sunset;
+  dynamic pressure;
+  dynamic humidity;
+  dynamic dewPoint;
+  dynamic windSpeed;
+  dynamic windDeg;
+  dynamic clouds;
+  dynamic pop;
+  dynamic uvi;
   
 }

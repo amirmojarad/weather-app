@@ -1,6 +1,6 @@
 class MinutelyData {
-  int dt; //Time of the forecasted data, unix, UTC
-  int precipitation;
+  dynamic dt; //Time of the forecasted data, unix, UTC
+  dynamic precipitation;
 
   MinutelyData({this.dt, this.precipitation});
 

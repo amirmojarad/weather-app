@@ -1,5 +1,5 @@
 class FeelsLike {
-  double day, night, eve, morn;
+  dynamic day, night, eve, morn;
 
   FeelsLike({this.day, this.night, this.eve, this.morn});
 

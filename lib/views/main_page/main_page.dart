@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:weather/models/localizations/app_localizations.dart';
 import 'package:weather/models/utils/device.dart';
+import 'package:weather/view_models/controllers/main_page_controller.dart';
 import 'package:weather/views/cities_view/cities_view.dart';
+import 'package:weather/views/home/home.dart';
 import 'package:weather/views/search_view/search_view_horizontal.dart';
 import 'package:weather/views/search_view/search_view_vertical.dart';
 
@@ -14,42 +19,53 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  PageController controller = PageController();
-  int index = 0;
+  MainPageController controller;
+
+  onPageChange(int value) {
+    setState(() {
+      controller.index = value;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller = MainPageController();
+  }
 
   @override
   Widget build(BuildContext context) {
     device = Device(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height);
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+    );
     return Scaffold(
-      floatingActionButton: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            width: device.width - 100,
-            height: device.height / 10,
-            decoration: BoxDecoration(
-              color: Color(0xff4AF8F8),
-              borderRadius: BorderRadius.circular(18),
-            ),
-          ),
-          MyBottomNavigationBar(index)
-        ],
-      ),
       appBar:
           PreferredSize(preferredSize: Size.fromHeight(60), child: MyAppBar()),
-      body: PageView(
-        controller: controller,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          OrientationBuilder(
-            builder: (context, orientation) {
-              return orientation == Orientation.portrait
-                  ? SearchViewVertical()
-                  : SearchViewHorizontal();
-            },
+          PageView(
+            controller: controller.controller,
+            onPageChanged: (value) => onPageChange(value),
+            children: [
+              HomePage(),
+              SearchViewVertical(),
+              CitiesView(),
+            ],
           ),
-          CitiesView(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 18.0),
+            child: BottomNavBar(
+              currentIndex: controller.index,
+              controller: controller.controller,
+              items: [
+                LineIcons.home,
+                LineIcons.search,
+                LineIcons.city,
+              ],
+            ),
+          ),
         ],
       ),
       resizeToAvoidBottomPadding: false,
