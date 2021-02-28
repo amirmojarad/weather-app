@@ -2,6 +2,13 @@
   "hello": "hello",
   "search": "Search",
   "feels_like": "Feels Like",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "humidity": "Humidity",
+  "clouds": "Clouds",
+  "uvi": "UVI",
+  "wind_speed": "Wind Speed",
+
   "monday": "Monday",
   "tuesday": "Tuesday",
   "wednesday": "Wednesday",

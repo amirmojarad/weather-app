@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-        future: controller.getData(25.2048, 55.2708),
+        future: controller.getData(33.4418, -94.0377),
       ),
     );
   }
