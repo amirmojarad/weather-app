@@ -6,9 +6,9 @@
   "sunset": "Sunset",
   "humidity": "Humidity",
   "clouds": "Clouds",
-  "uvi": "UVI",
+  "pressure": "Pressure",
+  "uvi": "UV index",
   "wind_speed": "Wind Speed",
-
   "monday": "Monday",
   "tuesday": "Tuesday",
   "wednesday": "Wednesday",
