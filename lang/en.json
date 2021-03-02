@@ -27,5 +27,11 @@
   "september": "September",
   "october": "October",
   "november": "November",
-  "december": "December"
+  "december": "December",
+  "sun": "Sun",
+  "mon": "Mon",
+  "tue": "Tue",
+  "wed": "Wed",
+  "thu": "Thu",
+  "fri": "Fri"
 }
