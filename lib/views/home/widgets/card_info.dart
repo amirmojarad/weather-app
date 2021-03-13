@@ -1,78 +1,40 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/models/utils/device.dart';
+import 'package:weather/models/utils/icon_color.dart';
 import 'package:weather/view_models/api_handler/api_utils.dart';
 import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/localizations/app_localizations.dart';
 
 Container buildCardInfo(dynamic temp, dynamic feelsLike, String icon,
     String description, BuildContext context) {
   return Container(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          Column(
-            children: [
-              Image.network(
-                getIcons(icon),
-                color: Colors.white,
-              ),
-              Text(
-                "$description",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          SizedBox(
-            width: device.width - 300,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 6.0),
-            child:
-                buildLeftSectionCard(temp, feelsLike, context),
-          ),
-          // Column(
-          //   children: [
-          //     Image.network(
-          //       getIcons(icon),
-          //       color: Colors.white,
-          //     ),
-          //     Text(
-          //       "$description",
-          //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          //     ),
-          //   ],
-          // ),
-        ],
-      ),
-
-      /*GridView.count(
-        physics: NeverScrollableScrollPhysics(),
-        crossAxisCount: 2,
-        mainAxisSpacing: 1,
-        shrinkWrap: true,
-        children: [
-          buildLeftSectionCard(temp, feelsLike, context),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 48.0),
-            child: Column(
-              children: [
-                Image.network(
-                  getIcons(icon),
-                  color: Colors.yellow,
-                  // width: device.width / 5.9,
-                ),
-                Text(
-                  "$description",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Column(
+          children: [
+            Image.network(
+              getIcons(icon),
+              color: getColor(icon),
             ),
-          )
-        ],
-      ),*/
+            Text(
+              "$description",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(
+          width: device.width - 380,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: buildLeftSectionCard(temp, feelsLike, context),
+        ),
+      ],
     ),
     width: device.width,
-    height: device.height / 2,
+    height: device.height / 1.2,
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
@@ -96,10 +58,11 @@ Container buildCardInfo(dynamic temp, dynamic feelsLike, String icon,
 Column buildLeftSectionCard(
     dynamic temp, dynamic feelsLike, BuildContext context) {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             "${temp.toInt()}",

@@ -62,9 +62,11 @@ class CurrentWeather {
 
 CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
   return CurrentWeather(
-    dt: json["dt"],
-    sunrise: json["sunrise"],
-    sunset: json["sunset"],
+    dt: DateTime.fromMillisecondsSinceEpoch(json["dt"] * 1000).toLocal(),
+    sunrise:
+        DateTime.fromMillisecondsSinceEpoch(json["sunrise"] * 1000).toLocal(),
+    sunset:
+        DateTime.fromMillisecondsSinceEpoch(json["sunset"] * 1000).toLocal(),
     temp: json["temp"],
     feelsLike: json["feels_like"],
     pressure: json["pressure"],

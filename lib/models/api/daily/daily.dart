@@ -1,13 +1,17 @@
+import 'package:weather/models/api/daily/day.dart';
+
 class Daily {
-  dynamic dt;
-  dynamic sunrise, sunset;
-  dynamic pressure;
-  dynamic humidity;
-  dynamic dewPoint;
-  dynamic windSpeed;
-  dynamic windDeg;
-  dynamic clouds;
-  dynamic pop;
-  dynamic uvi;
-  
+  List<Day> days;
+
+  Daily({this.days});
+
+  factory Daily.fromJson(List<dynamic> days) => _$DailyFromJson(days);
+}
+
+Daily _$DailyFromJson(List<dynamic> input) {
+  List<Day> days = [];
+  input.forEach((element) {
+    days.add(Day.fromJson(element));
+  });
+  return Daily(days: days);
 }

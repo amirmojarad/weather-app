@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:weather/models/api/weather.dart';
 import 'package:weather/view_models/controllers/home_controller.dart';
 
 class HomePage extends StatefulWidget {
+  ScrollController _controller;
+
+  HomePage(this._controller);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -38,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-        future: controller.getData(35.715298, 51.404343),
+        future: controller.getData(48.8566, 2.3522, widget._controller),
       ),
     );
   }

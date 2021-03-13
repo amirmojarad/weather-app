@@ -29,9 +29,11 @@
   "november": "November",
   "december": "December",
   "sun": "Sun",
+  "sat": "Sat",
   "mon": "Mon",
   "tue": "Tue",
   "wed": "Wed",
   "thu": "Thu",
-  "fri": "Fri"
+  "fri": "Fri",
+  "next_24_hour": "Next 24 Hour"
 }

@@ -61,7 +61,7 @@ class HourlyData {
 HourlyData _$HourlyDataFromJson(Map<String, dynamic> json) {
   return HourlyData(
     // pop: json["pop"],
-    dt: json["dt"],
+    dt: DateTime.fromMillisecondsSinceEpoch(json["dt"] * 1000).toLocal(),
     temp: json["temp"],
     feelsLike: json["feels_like"],
     pressure: json["pressure"],

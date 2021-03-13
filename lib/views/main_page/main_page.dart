@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:weather/models/localizations/app_localizations.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/controllers/main_page_controller.dart';
 import 'package:weather/views/cities_view/cities_view.dart';
 import 'package:weather/views/home/home.dart';
-import 'package:weather/views/search_view/search_view_horizontal.dart';
 import 'package:weather/views/search_view/search_view_vertical.dart';
 
 import 'widgets/my_app_bar.dart';
@@ -20,6 +17,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   MainPageController controller;
+  ScrollController _controller;
 
   onPageChange(int value) {
     setState(() {
@@ -27,10 +25,24 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  bool show = true;
+
+  _scrollFunction() {
+    if (_controller.offset == 0)
+      show = true;
+    else {
+      setState(() {
+        show = false;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     controller = MainPageController();
+    _controller = ScrollController();
+    _controller.addListener(_scrollFunction);
   }
 
   @override
@@ -49,23 +61,25 @@ class _MainPageState extends State<MainPage> {
             controller: controller.controller,
             onPageChanged: (value) => onPageChange(value),
             children: [
-              HomePage(),
+              HomePage(_controller),
               SearchViewVertical(),
               CitiesView(),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 18.0),
-            child: BottomNavBar(
-              currentIndex: controller.index,
-              controller: controller.controller,
-              items: [
-                LineIcons.home,
-                LineIcons.search,
-                LineIcons.city,
-              ],
-            ),
-          ),
+          show
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 18.0),
+                  child: BottomNavBar(
+                    currentIndex: controller.index,
+                    controller: controller.controller,
+                    items: [
+                      LineIcons.home,
+                      LineIcons.search,
+                      LineIcons.city,
+                    ],
+                  ),
+                )
+              : Container(),
         ],
       ),
       resizeToAvoidBottomPadding: false,

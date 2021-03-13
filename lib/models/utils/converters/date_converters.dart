@@ -1,24 +1,24 @@
 String getDay(int weekday) {
   switch (weekday) {
     case 1:
-      return ("monday");
+      return ("mon");
     case 2:
-      return ("tuesday");
+      return ("tue");
 
     case 3:
-      return ("wednesday");
+      return ("wed");
 
     case 4:
-      return ("thursday");
+      return ("thu");
 
     case 5:
-      return ("friday");
+      return ("fri");
 
     case 6:
-      return ("saturday");
+      return ("sat");
 
     case 7:
-      return ("sunday");
+      return ("sun");
 
     default:
       return "";
