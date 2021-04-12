@@ -34,13 +34,13 @@ class BottomNavBarItem extends StatelessWidget {
             children: [
               LineIcon(
                 data,
-                size: 40,
+                size: 25,
               ),
               currentIndex == index
                   ? Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: Container(
-                        width: device.width / 7,
+                        width: device.width / 10,
                         height: 3,
                         color: Color(0xff00539C),
                       ),
@@ -51,7 +51,7 @@ class BottomNavBarItem extends StatelessWidget {
         ),
       ),
       width: device.width / 4,
-      height: 75,
+      height: 40,
     );
   }
 }

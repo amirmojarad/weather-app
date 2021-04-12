@@ -38,27 +38,30 @@ class _BottomNavBarState extends State<BottomNavBar> {
         borderRadius: BorderRadius.circular(29),
       ),
       width: device.width - 100,
-      height: 75,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Center(
-            child: BottomNavBarItem(
-              currentIndex: widget.currentIndex,
-              index: index,
-              data: widget.items[index],
-              onTap: () {
-                setState(
-                  () {
-                    widget.controller.jumpToPage(index);
-                    widget.currentIndex = index;
+      height: 40,
+      child: Row(
+        children: List.generate(
+          3,
+          (index) {
+            return Expanded(
+              child: Center(
+                child: BottomNavBarItem(
+                  currentIndex: widget.currentIndex,
+                  index: index,
+                  data: widget.items[index],
+                  onTap: () {
+                    setState(
+                      () {
+                        widget.controller.jumpToPage(index);
+                        widget.currentIndex = index;
+                      },
+                    );
                   },
-                );
-              },
-            ),
-          );
-        },
-        itemCount: widget.items.length,
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -41,7 +41,7 @@ class Day {
 Day _$DayFromJson(Map<String, dynamic> json) {
   return Day(
     weather: DayWeathers.fromJson(json["weather"] as List),
-    dt: json["dt"],
+    dt: DateTime.fromMillisecondsSinceEpoch(json["dt"] * 1000).toLocal(),
     windDeg: json["wind_deg"],
     windSpeed: json["wind_speed"],
     sunset: json["sunset"],

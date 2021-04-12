@@ -10,9 +10,11 @@ class HomeController {
 
   Future<Widget> getData(
       double lat, double lon, ScrollController controller) async {
+    print("im in");
+
     var response = await API.makeOneCall(lat, lon);
+
     Weather a = Weather.fromJson(jsonDecode(response.body));
-    print(a.lat);
     if (response.statusCode == 200) {
       weather = Weather.fromJson(jsonDecode(response.body));
       return HomeView(weather, controller);

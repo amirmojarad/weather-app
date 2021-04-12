@@ -28,8 +28,10 @@ class _MainPageState extends State<MainPage> {
   bool show = true;
 
   _scrollFunction() {
-    if (_controller.offset == 0)
-      show = true;
+    if (_controller.offset >= 0 && _controller.offset <= 10)
+      setState(() {
+        show = true;
+      });
     else {
       setState(() {
         show = false;
@@ -52,6 +54,7 @@ class _MainPageState extends State<MainPage> {
       height: MediaQuery.of(context).size.height,
     );
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar:
           PreferredSize(preferredSize: Size.fromHeight(60), child: MyAppBar()),
       body: Stack(
@@ -63,26 +66,27 @@ class _MainPageState extends State<MainPage> {
             children: [
               HomePage(_controller),
               SearchViewVertical(),
-              CitiesView(),
+              CitiesView(_controller),
             ],
           ),
-          show
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 18.0),
-                  child: BottomNavBar(
-                    currentIndex: controller.index,
-                    controller: controller.controller,
-                    items: [
-                      LineIcons.home,
-                      LineIcons.search,
-                      LineIcons.city,
-                    ],
-                  ),
-                )
-              : Container(),
+          AnimatedOpacity(
+            opacity: show ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 500),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: BottomNavBar(
+                currentIndex: controller.index,
+                controller: controller.controller,
+                items: [
+                  LineIcons.home,
+                  LineIcons.search,
+                  LineIcons.city,
+                ],
+              ),
+            ),
+          ),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
     );
   }
 }
