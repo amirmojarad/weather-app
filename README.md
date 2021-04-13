@@ -2,7 +2,7 @@
 
 Weather Forecast Application with [OpenWeatherMap](https://openweathermap.org/api) API with Flutter!
 
-## 🚀Features
+## 🚀 Features
 
 * Weather Forecast For a Week
 * Weather Forecast For 24 Hour
