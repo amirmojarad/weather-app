@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:weather/view_models/controllers/weather_app_controller.dart';
+import 'package:weather/view_models/database_handler/database_handler.dart';
+import 'package:weather/views/progressbars/welcome_progress.dart';
 import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/localizations/app_localizations.dart';
 import 'main_page/main_page.dart';
 
@@ -9,6 +12,8 @@ class WeatherApp extends StatefulWidget {
 }
 
 class _WeatherAppState extends State<WeatherApp> {
+  WeatherAppController controller = WeatherAppController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +36,6 @@ class _WeatherAppState extends State<WeatherApp> {
               fontSize: 28.0, color: Colors.black, fontWeight: FontWeight.bold),
           bodyText1: TextStyle(
               fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.w600),
-
         ),
       ),
       supportedLocales: [
@@ -53,7 +57,16 @@ class _WeatherAppState extends State<WeatherApp> {
         return supportedLocales.first;
       },
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: FutureBuilder(
+        future: controller.generateDB(),
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? MainPage(snapshot.data)
+              : Center(
+                  child: welcomeProgress(MediaQuery.of(context).size.width,
+                      MediaQuery.of(context).size.height));
+        },
+      ),
     );
   }
 }
