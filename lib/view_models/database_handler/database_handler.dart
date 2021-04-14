@@ -50,8 +50,10 @@ class DatabaseHandler {
   List<City> query(String city) {
     List<City> result = [];
     cities.forEach((element) {
-      if (element.city.toLowerCase().contains(city.toLowerCase()))
+      if (element.city.toLowerCase().startsWith(city.toLowerCase()) &&
+          city.length <= 3)
         result.add(element);
+      else if (element.city.contains(city)) result.add(element);
     });
     return result;
   }
