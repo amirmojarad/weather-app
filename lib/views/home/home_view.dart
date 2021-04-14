@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_icons/flutter_weather_icons.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 import 'package:weather/models/api/hourly/data.dart';
 import 'package:weather/models/api/weather.dart';
 import 'package:weather/models/utils/converters/date_converters.dart';
@@ -21,7 +23,11 @@ class _HomeViewState extends State<HomeView> {
   HomeViewController controller;
   int selected = 1;
 
-  // 1 today, 2 this week
+  @override
+  void dispose() {
+    super.dispose();
+  } // 1 today, 2 this week
+
   @override
   void initState() {
     super.initState();
@@ -30,6 +36,37 @@ class _HomeViewState extends State<HomeView> {
       scrollController: widget._controller,
     );
   }
+
+  _buildCard({
+    Config config,
+    Color backgroundColor = Colors.transparent,
+    DecorationImage backgroundImage,
+  }) {
+    return Container(
+      height: 50,
+      width: double.infinity,
+      child: Card(
+        elevation: 0.0,
+        clipBehavior: Clip.antiAlias,
+        child: WaveWidget(
+          config: config,
+          backgroundColor: Color(0xff1D9AFF).withOpacity(0.05),
+          // backgroundImage: backgroundImage,
+          size: Size(double.infinity, double.infinity),
+          waveAmplitude: 0,
+        ),
+      ),
+    );
+  }
+
+  MaskFilter _blur;
+  final List<MaskFilter> _blurs = [
+    null,
+    MaskFilter.blur(BlurStyle.normal, 10.0),
+    MaskFilter.blur(BlurStyle.inner, 10.0),
+    MaskFilter.blur(BlurStyle.outer, 10.0),
+    MaskFilter.blur(BlurStyle.solid, 16.0),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +77,21 @@ class _HomeViewState extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildCurrentData(context),
-            
+            _buildCard(
+              config: CustomConfig(
+                gradients: [
+                  [Colors.blue, Color(0xff00EFF7)],
+                  [Colors.blue[800], Color(0xff4BB8DF)],
+                  [Color(0xff65CCCD), Color(0xff91FDFF)],
+                  [Color(0xff0886FD), Color(0xff2A8FED)]
+                ],
+                durations: [35000, 19440, 10800, 6000],
+                heightPercentages: [0.20, 0.23, 0.25, 0.30],
+                // blur: _blur,
+                gradientBegin: Alignment.bottomLeft,
+                gradientEnd: Alignment.topRight,
+              ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -310,7 +361,7 @@ class _HomeViewState extends State<HomeView> {
         ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 10.0, bottom: 38.0),
+        padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
         child: Column(
           children: [
             Text(controller.getCityName(),
@@ -338,7 +389,7 @@ class _HomeViewState extends State<HomeView> {
             //   getIcons(controller.weather.current.weather.icon),
             // ),
             Padding(
-              padding: const EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
