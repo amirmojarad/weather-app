@@ -40,6 +40,7 @@ class _HomeViewState extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildCurrentData(context),
+            
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,6 +61,12 @@ class _HomeViewState extends State<HomeView> {
                           onTap: () {
                             selected = 2;
                           }),
+                      SizedBox(width: 20),
+                      buildSection(
+                          title: "All",
+                          onTap: () {
+                            selected = 3;
+                          }),
                     ],
                   ),
                 ),
@@ -73,12 +80,9 @@ class _HomeViewState extends State<HomeView> {
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: selected == 1
-                          ? listGenerator(controller.weather.hourly.data.length,
-                              controller.weather.hourly.data, "today")
-                          : listGenerator(controller.weather.daily.days.length,
-                              controller.weather.daily.days, "week"),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(children: makeList()),
                     ),
                   ),
                 ),
@@ -88,6 +92,68 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
+  }
+
+  Widget buildAllInfo({@required dynamic data, IconData icon, String title}) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 25.0),
+      child: Column(
+        children: [
+          Text(title,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20, top: 5),
+            child: Icon(icon),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> buildAllSection() {
+    List<Widget> result = [];
+
+    // ---------------- Sunrise ---------------------//
+    String sunrise = "";
+    var sunriseDate = controller.weather.current.sunrise as DateTime;
+    sunrise = "${sunriseDate.hour}:${sunriseDate.minute}";
+    result.add(buildAllInfo(
+        data: sunrise, icon: WeatherIcons.wiSunrise, title: "Sunrise"));
+    // ----------------Sunset-----------------------//
+    String sunset = "";
+    var sunsetDate = controller.weather.current.sunset as DateTime;
+    sunset = "${sunsetDate.hour}:${sunsetDate.minute}";
+    result.add(buildAllInfo(
+        data: sunset, icon: WeatherIcons.wiSunset, title: "Sunset"));
+    // ----------------Clouds-----------------------//
+    result.add(buildAllInfo(
+        data: controller.weather.current.clouds,
+        icon: WeatherIcons.wiCloud,
+        title: "Clouds"));
+    return result;
+  }
+
+  List<Widget> makeList() {
+    switch (selected) {
+      case 1:
+        return listGenerator(controller.weather.hourly.data.length,
+            controller.weather.hourly.data, "today");
+      case 2:
+        return listGenerator(controller.weather.daily.days.length,
+            controller.weather.daily.days, "week");
+      default:
+        return buildAllSection();
+    }
   }
 
   List<Widget> listGenerator(int length, dynamic list, String type) {
@@ -101,6 +167,17 @@ class _HomeViewState extends State<HomeView> {
 
   Material buildSection({String title, Function onTap}) {
     int thisIndex = title.toLowerCase() == "today" ? 1 : 2;
+    switch (title.toLowerCase()) {
+      case 'today':
+        thisIndex = 1;
+        break;
+      case 'this week':
+        thisIndex = 2;
+        break;
+      case 'all':
+        thisIndex = 3;
+        break;
+    }
     return Material(
       color: Colors.transparent,
       child: InkWell(

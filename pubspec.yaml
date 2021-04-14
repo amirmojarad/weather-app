@@ -19,7 +19,7 @@ dependencies:
   flutter_weather_icons: ^1.0.2
   sqflite: ^2.0.0+3
   url_launcher: ^6.0.3
-#  path_provider: ^2.0.1
+  wave: ^0.2.0
 
   flutter_localizations:
     sdk: flutter
