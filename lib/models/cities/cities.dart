@@ -22,7 +22,7 @@ class Cities {
 Cities _$CitiesFromJson(Map<String, dynamic> json) {
   Cities cities = Cities();
   json.forEach((key, value) {
-    cities.cities.add(value);
+    cities.cities.add(City.fromJson(value));
   });
   return cities;
 }
