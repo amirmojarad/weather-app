@@ -58,10 +58,11 @@ class _WeatherAppState extends State<WeatherApp> {
       },
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
-        future: controller.generateDB(),
+        future: controller.generateInformation(),
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? MainPage(snapshot.data)
+              ? MainPage(snapshot.data['databaseHandler'],
+                  snapshot.data['citiesHandler'])
               : Center(
                   child: welcomeProgress(MediaQuery.of(context).size.width,
                       MediaQuery.of(context).size.height));

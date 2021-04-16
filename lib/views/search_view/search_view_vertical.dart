@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/localizations/app_localizations.dart';
 import 'package:weather/models/utils/device.dart';
+import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/views/search_view/widgets/result_card.dart';
@@ -8,8 +9,10 @@ import 'package:weather/views/search_view/widgets/result_card.dart';
 class SearchViewVertical extends StatefulWidget {
   ScrollController _controller;
   DatabaseHandler databaseHandler;
+  CitiesHandler citiesHandler;
 
-  SearchViewVertical(this._controller, this.databaseHandler);
+  SearchViewVertical(
+      this._controller, this.databaseHandler, this.citiesHandler);
 
   @override
   _SearchViewVerticalState createState() =>
@@ -28,10 +31,16 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
 
   int size = 10;
 
+  void tapped() {
+    setState(() {
+      return true;
+    });
+  }
+
   List<Widget> fillCards() {
     int newSize = result.length > 10 ? size : result.length;
     cityCards = List.generate(newSize, (index) {
-      return buildResultCard(result[index], context, _controller);
+      return ResultCard(result[index], _controller, widget.citiesHandler);
     });
     print(cityCards.length);
     return cityCards;
@@ -155,11 +164,5 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    textController.text = "";
-    result.clear();
   }
 }

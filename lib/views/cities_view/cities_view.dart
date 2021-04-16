@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:weather/models/utils/device.dart';
+import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/cities_view_controller.dart';
+import 'package:weather/view_models/database_handler/city.dart';
 
 class CitiesView extends StatefulWidget {
   ScrollController controller;
+  CitiesHandler citiesHandler;
 
-  CitiesView(this.controller);
+  CitiesView(this.controller, this.citiesHandler);
 
   @override
   _CitiesViewState createState() => _CitiesViewState();
@@ -14,27 +17,30 @@ class CitiesView extends StatefulWidget {
 class _CitiesViewState extends State<CitiesView> {
   CitiesViewController controller = CitiesViewController();
 
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
+    print(widget.citiesHandler.cities.cities.length);
     return SafeArea(
       child: SingleChildScrollView(
         controller: widget.controller,
-        child: Column(
-          children: [
-            buildCityCard(),
-            buildCityCard(),
-            buildCityCard(),
-            buildCityCard(),
-            buildCityCard(),
-            buildCityCard(),
-            buildCityCard(),
-          ],
-        ),
+        child: widget.citiesHandler.cities.cities.length != 0
+            ? Column(
+                children: List.generate(
+                    widget.citiesHandler.cities.cities.length, (index) {
+                  return buildCityCard(
+                      widget.citiesHandler.cities.cities[index]);
+                }),
+              )
+            : Center(
+                child: Text("List Is Empty"),
+              ),
       ),
     );
   }
 
-  Padding buildCityCard() {
+  Padding buildCityCard(City city) {
     BorderRadius borderRadius = BorderRadius.only(
       topLeft: Radius.circular(2),
       topRight: Radius.circular(30),
@@ -74,24 +80,14 @@ class _CitiesViewState extends State<CitiesView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "19",
-                          style: TextStyle(
-                              fontSize: 32, fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "o",
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.w600),
-                        )
-                      ],
+                    Text(
+                      city.city,
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text("Tehran",
+                      child: Text(city.country,
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w500)),
                     )

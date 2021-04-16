@@ -5,15 +5,25 @@ class CitiesHandler {
   Cities cities;
   FileHandler fileHandler;
 
-  CitiesHandler(this.cities) {
+  CitiesHandler() {
     this.fileHandler = FileHandler();
   }
 
-  void load() async {
-    cities = Cities.fromJson(await fileHandler.read());
+  Future<void> load() async {
+    try {
+      Map<String, dynamic> json = await fileHandler.read();
+      print("from load " + json.length.toString());
+      if (json.length == 0)
+        cities = Cities();
+      else
+        cities = Cities.fromJson(json);
+    } catch (e) {
+      cities = Cities();
+      print(e);
+    }
   }
 
-  void save() async {
+  Future<void> save() async {
     await fileHandler.write(cities.toJson());
   }
 }

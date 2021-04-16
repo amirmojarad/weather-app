@@ -15,8 +15,9 @@ class FileHandler {
     try {
       await _fetchFile();
       String contents = await file.readAsString();
+      print(contents);
       if (contents.isEmpty || contents == "") throw 'file is empty';
-      return jsonDecode(contents);
+      return await jsonDecode(contents);
     } catch (e) {
       throw 'File Exception';
     }
@@ -24,6 +25,7 @@ class FileHandler {
 
   Future<void> write(Map<String, dynamic> json) async {
     await _fetchFile();
+    print("from write " + json.toString());
     String jsonEncoded = jsonEncode(json);
     await file.writeAsString(jsonEncoded);
   }

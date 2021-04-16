@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 
 class Cities {
@@ -9,10 +8,7 @@ class Cities {
   }
 
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> json = {};
-    cities.forEach((element) {
-      json.putIfAbsent(element.id, () => element.toJson());
-    });
+    Map<String, List> json = {'cities': cities};
     return json;
   }
 
@@ -21,8 +17,9 @@ class Cities {
 
 Cities _$CitiesFromJson(Map<String, dynamic> json) {
   Cities cities = Cities();
-  json.forEach((key, value) {
-    cities.cities.add(City.fromJson(value));
+  (json['cities'] as List).forEach((element) {
+    cities.cities.add(City.fromJson(element));
+
   });
   return cities;
 }

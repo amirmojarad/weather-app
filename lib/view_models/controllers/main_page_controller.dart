@@ -6,9 +6,8 @@ class MainPageController {
   int index = 0;
   PageController controller = PageController();
 
-  CitiesHandler cities = CitiesHandler();
 
-  void fetchCities() async {
-    cities.
-  }
+
+
+
 }
