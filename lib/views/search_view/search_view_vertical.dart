@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/localizations/app_localizations.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
+import 'package:weather/view_models/controllers/search_view_controller.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/views/search_view/widgets/result_card.dart';
@@ -15,38 +16,20 @@ class SearchViewVertical extends StatefulWidget {
       this._controller, this.databaseHandler, this.citiesHandler);
 
   @override
-  _SearchViewVerticalState createState() =>
-      _SearchViewVerticalState(_controller, databaseHandler);
+  _SearchViewVerticalState createState() => _SearchViewVerticalState(
+      _controller, databaseHandler, this.citiesHandler);
 }
 
 class _SearchViewVerticalState extends State<SearchViewVertical> {
-  bool onTyping = false;
-  bool clearTapped = true;
-  ScrollController _controller;
-  DatabaseHandler databaseHandler;
-  TextEditingController textController = TextEditingController();
-  List<City> result = [];
+  SearchViewController controller;
 
-  List<Widget> cityCards = [];
-
-  int size = 10;
-
-  void tapped() {
-    setState(() {
-      return true;
-    });
+  _SearchViewVerticalState(ScrollController scrollController,
+      DatabaseHandler databaseHandler, CitiesHandler citiesHandler) {
+    this.controller = SearchViewController(
+        citiesHandler: citiesHandler,
+        controller: scrollController,
+        databaseHandler: databaseHandler);
   }
-
-  List<Widget> fillCards() {
-    int newSize = result.length > 10 ? size : result.length;
-    cityCards = List.generate(newSize, (index) {
-      return ResultCard(result[index], _controller, widget.citiesHandler);
-    });
-    print(cityCards.length);
-    return cityCards;
-  }
-
-  _SearchViewVerticalState(this._controller, this.databaseHandler) {}
 
   @override
   Widget build(BuildContext context) {
@@ -69,29 +52,24 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                     width: device.width - 50,
                     height: device.height / 10,
                     child: TextFormField(
-                      controller: textController,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+                      controller: controller.textController,
                       onEditingComplete: () {
                         setState(() {
-                          onTyping = false;
+                          controller.onEditingComplete();
                         });
                       },
                       onTap: () {
                         setState(() {
-                          onTyping = !onTyping;
+                          controller.onTap();
                         });
                       },
                       decoration: InputDecoration(
-                          suffixIcon: textController.text.length != 0
+                          suffixIcon: controller.textController.text.length != 0
                               ? IconButton(
                                   icon: Icon(Icons.cancel),
                                   onPressed: () {
-                                    textController.text = "";
-                                    clearTapped = true;
                                     setState(() {
-                                      result.clear();
+                                      controller.cancelSearch();
                                     });
                                   },
                                 )
@@ -109,10 +87,7 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                             icon: Icon(Icons.search),
                             color: Colors.blue,
                             onPressed: () {
-                              if (textController.text.isNotEmpty)
-                                result =
-                                    databaseHandler.query(textController.text);
-                              if (result.isEmpty) clearTapped = false;
+                              controller.onSearchPressed();
                             },
                           ),
                           hintText:
@@ -126,8 +101,8 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SingleChildScrollView(
-                      controller: _controller,
-                      child: result.length != 0
+                      controller: controller.controller,
+                      child: controller.result.length != 0
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -136,23 +111,22 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: fillCards(),
+                                    children: controller.fillCards(),
                                   ),
-                                  size > 10
+                                  controller.size > 10
                                       ? GestureDetector(
                                           child: Text("Tap to More..."),
                                           onTap: () {
                                             setState(
                                               () {
-                                                size = size + 10;
-                                                fillCards();
+                                                controller.tapOnMore();
                                               },
                                             );
                                           },
                                         )
                                       : Container()
                                 ])
-                          : clearTapped
+                          : controller.clearTapped
                               ? Container()
                               : Text("Not match anything"),
                     ),
