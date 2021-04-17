@@ -43,3 +43,4 @@ flutter:
     - lang/en.json
     - lang/fa.json
     - assets/database/cities.sqlite
+    - assets/images/No Internet Connection UI.jpg
