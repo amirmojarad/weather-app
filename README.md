@@ -2,12 +2,23 @@
 
 Weather Forecast Application with [OpenWeatherMap](https://openweathermap.org/api) API with Flutter!
 
+## ⬇️ Download!
+Cooming Soon...😉
+
 ## 🚀 Features
 
 * Weather Forecast For a Week
 * Weather Forecast For 24 Hour
 * Full Weather Information per request moment
 * Favirote Cities
+
+## 🦍 Technologies
+* Dart
+* Flutter
+* Sqlite
+* async programming
+* Mobile App Developement
+* MVVM + Clean Architecture
 
 ## 🔧 Credits
 
