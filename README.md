@@ -11,6 +11,7 @@ Cooming Soon...😉
 * Weather Forecast For 24 Hour
 * Full Weather Information per request moment
 * Favirote Cities
+* International App (Farsi/English) 
 
 ## 🦍 Technologies
 * Dart
@@ -24,3 +25,12 @@ Cooming Soon...😉
 
 * API : [Open Weather Map API](https://openweathermap.org/api)
 * UI Design : [Weather App by Phtranh](https://www.behance.net/gallery/90366995/Weather-App?tracking_source=search_projects_recommended%7Cweather%20forecast%20app)
+
+## 📝 Todo
+```
+  * Add Farsi Language
+  * Add More Features
+  * Make It Provider Base Application
+  * Make Color Pallete
+  * Add Better Fonts
+```
