@@ -53,7 +53,10 @@ class DatabaseHandler {
       if (element.city.toLowerCase().startsWith(city.toLowerCase()) &&
           city.length <= 3)
         result.add(element);
-      else if (element.city.contains(city)) result.add(element);
+      else if (element.city.contains(city))
+        result.add(element);
+      else if (element.city.toLowerCase() == city.toLowerCase())
+        result.add(element);
     });
     return result;
   }

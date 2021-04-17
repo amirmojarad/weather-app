@@ -53,7 +53,5 @@ Icon getIcon(String iconURL, double size) {
 }
 
 String generateOneCallRequest(double lon, double lat) {
-  print(
-      "https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&units=metric&appid=$API_KEY");
   return "https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&units=metric&appid=$API_KEY";
 }

@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:weather/view_models/controllers/home_controller.dart';
+import 'package:weather/view_models/controllers/home_view_controller.dart';
 
-class HomePage extends StatefulWidget {
+class HomeView extends StatefulWidget {
   ScrollController _controller;
 
-  HomePage(this._controller);
+  HomeView(this._controller);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
-// London lat & lon = 51.5074  0.1278
-class _HomePageState extends State<HomePage> {
-  HomeController controller;
+class _HomeViewState extends State<HomeView> {
+  HomeViewController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = HomeController();
+    controller = HomeViewController();
   }
 
   @override

@@ -6,7 +6,8 @@ import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/main_page_controller.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/views/cities_view/cities_view.dart';
-import 'package:weather/views/home/home.dart';
+import 'package:weather/views/city_view/city_view.dart';
+import 'package:weather/views/city_view/home_view.dart';
 import 'package:weather/views/search_view/search_view_vertical.dart';
 
 import 'widgets/my_app_bar.dart';
@@ -76,7 +77,7 @@ class _MainPageState extends State<MainPage> {
             controller: controller.controller,
             onPageChanged: (value) => onPageChange(value),
             children: [
-              HomePage(_controller),
+              HomeView(_controller),
               SearchViewVertical(_controller, databaseHandler, citiesHandler),
               CitiesView(_controller, citiesHandler),
             ],

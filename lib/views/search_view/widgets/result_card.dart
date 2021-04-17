@@ -1,13 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:weather/models/api/weather.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
+import 'package:weather/view_models/controllers/search_result_card_controller.dart';
 import 'package:weather/view_models/database_handler/city.dart';
-import 'package:weather/view_models/api_handler/responses.dart' as API;
-import 'package:weather/views/home/home_view.dart';
 
 class ResultCard extends StatefulWidget {
   City city;
@@ -21,24 +17,12 @@ class ResultCard extends StatefulWidget {
 }
 
 class _ResultCardState extends State<ResultCard> {
-  City city;
-  ScrollController _controller;
+  SearchResultCardController controller;
 
-  _ResultCardState(this.city, this._controller);
-
-  Future<Widget> getData(
-      double lat, double lon, ScrollController controller) async {
-    Weather weather;
-    var response = await API.makeOneCall(lat, lon);
-
-    if (response.statusCode == 200) {
-      weather = Weather.fromJson(jsonDecode(response.body));
-      return HomeView(weather, controller);
-    } else
-      throw Exception("Connection Failed");
+  _ResultCardState(City city, ScrollController scrollController) {
+    controller =
+        SearchResultCardController(controller: scrollController, city: city);
   }
-
-  bool tapped = false;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +53,7 @@ class _ResultCardState extends State<ResultCard> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => FutureBuilder(
-                            future: getData(city.lat, city.lon, _controller),
+                            future: controller.getData(),
                             builder: (context, snapshot) => snapshot.hasData
                                 ? Scaffold(
                                     body: snapshot.data,
@@ -102,12 +86,12 @@ class _ResultCardState extends State<ResultCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          city.city,
+                          controller.city.city,
                           style: TextStyle(color: Colors.black, fontSize: 25),
                         ),
                         SizedBox(height: 10),
                         Text(
-                          city.country,
+                          controller.city.country,
                           style: TextStyle(color: Colors.grey, fontSize: 20),
                         ),
                       ],
@@ -117,15 +101,15 @@ class _ResultCardState extends State<ResultCard> {
                       children: [
                         IconButton(
                           icon: Icon(
-                              tapped ? LineIcons.heartAlt : LineIcons.heart,
-                              color: tapped ? Colors.red : Colors.black),
+                              controller.tapped
+                                  ? LineIcons.heartAlt
+                                  : LineIcons.heart,
+                              color: controller.tapped
+                                  ? Colors.red
+                                  : Colors.black),
                           onPressed: () async {
                             setState(() {
-                              tapped = !tapped;
-                              if (tapped)
-                                widget.citiesHandler.cities.cities.add(city);
-                              else
-                                widget.citiesHandler.cities.cities.remove(city);
+                              controller.addToFavorites(widget.citiesHandler);
                             });
                             await widget.citiesHandler.save();
                           },
