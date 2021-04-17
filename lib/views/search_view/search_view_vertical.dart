@@ -3,9 +3,7 @@ import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/l
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_view_controller.dart';
-import 'package:weather/view_models/database_handler/city.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
-import 'package:weather/views/search_view/widgets/result_card.dart';
 
 class SearchViewVertical extends StatefulWidget {
   ScrollController _controller;

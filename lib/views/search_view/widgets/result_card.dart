@@ -50,31 +50,30 @@ class _ResultCardState extends State<ResultCard> {
             splashColor: Color(0xffD4FFE8).withOpacity(0.5),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FutureBuilder(
-                            future: controller.getData(),
-                            builder: (context, snapshot) => snapshot.hasData
-                                ? Scaffold(
-                                    body: snapshot.data,
-                                    appBar: AppBar(
-                                      leading: IconButton(
-                                        icon: Icon(Icons.arrow_back_ios),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
-                                    color: Colors.white,
-                                    child: Center(
-                                        child: CircularProgressIndicator())),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FutureBuilder(
+                    future: controller.getData(),
+                    builder: (context, snapshot) => snapshot.hasData
+                        ? Scaffold(
+                            body: snapshot.data,
+                            appBar: AppBar(
+                              leading: IconButton(
+                                icon: Icon(Icons.arrow_back_ios),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
                           )
-                      // getData(city.lat, city.lon, controller),
-                      ));
+                        : Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            color: Colors.white,
+                            child: Center(child: CircularProgressIndicator())),
+                  ),
+                ),
+              );
             },
             child: Padding(
               padding: EdgeInsets.only(
@@ -97,24 +96,28 @@ class _ResultCardState extends State<ResultCard> {
                       ],
                     ),
                     Spacer(),
-                    Column(
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                              controller.tapped
-                                  ? LineIcons.heartAlt
-                                  : LineIcons.heart,
-                              color: controller.tapped
-                                  ? Colors.red
-                                  : Colors.black),
-                          onPressed: () async {
+                    Padding(
+                      padding: const EdgeInsets.only(right: 18.0),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(30),
+                          onTap: () async {
                             setState(() {
                               controller.addToFavorites(widget.citiesHandler);
                             });
                             await widget.citiesHandler.save();
                           },
-                        )
-                      ],
+                          child: Icon(
+                              controller.likeTapped
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_rounded,
+                              color: controller.likeTapped
+                                  ? Colors.red
+                                  : Colors.black,
+                              size: 30),
+                        ),
+                      ),
                     )
                   ],
                 ),

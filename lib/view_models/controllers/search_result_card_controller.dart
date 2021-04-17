@@ -10,14 +10,17 @@ import 'package:weather/view_models/api_handler/responses.dart' as API;
 class SearchResultCardController {
   City city;
   ScrollController controller;
-
-  bool tapped = false;
-
+  bool likeTapped = false;
+  bool homeTapped = false;
   SearchResultCardController({this.city, this.controller});
 
+  void homeTap(){
+    homeTapped = !homeTapped;
+  }
+
   void addToFavorites(CitiesHandler citiesHandler) {
-    tapped = !tapped;
-    if (tapped)
+    likeTapped = !likeTapped;
+    if (likeTapped)
       citiesHandler.cities.cities.add(city);
     else
       citiesHandler.cities.cities.remove(city);
