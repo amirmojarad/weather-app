@@ -8,7 +8,7 @@ import 'package:weather/view_models/database_handler/city.dart';
 
 void main() {
   test('Opening file, READ AND WRITE', () async {
-    FileHandler fileHandler = FileHandler();
+    FileHandler fileHandler = FileHandler('cities');
     try {
       Cities cities = Cities();
       cities.cities.add(

@@ -4,13 +4,15 @@ import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_result_card_controller.dart';
 import 'package:weather/view_models/database_handler/city.dart';
+import 'package:weather/view_models/home_city/home_city.dart';
 
 class ResultCard extends StatefulWidget {
   City city;
   CitiesHandler citiesHandler;
   ScrollController _controller;
+  HomeCity homeCity;
 
-  ResultCard(this.city, this._controller, this.citiesHandler);
+  ResultCard(this.city, this._controller, this.citiesHandler, this.homeCity);
 
   @override
   _ResultCardState createState() => _ResultCardState(city, this._controller);
@@ -18,6 +20,8 @@ class ResultCard extends StatefulWidget {
 
 class _ResultCardState extends State<ResultCard> {
   SearchResultCardController controller;
+
+  bool selected = false;
 
   _ResultCardState(City city, ScrollController scrollController) {
     controller =
@@ -56,8 +60,31 @@ class _ResultCardState extends State<ResultCard> {
                     future: controller.getData(),
                     builder: (context, snapshot) => snapshot.hasData
                         ? Scaffold(
-                            body: snapshot.data,
+                            body: snapshot.data['widget'],
                             appBar: AppBar(
+                              actions: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: GestureDetector(
+                                    child: Icon(
+                                        selected
+                                            ? Icons.home
+                                            : Icons.home_outlined,
+                                        size: 30),
+                                    onTap: () async {
+                                      setState(() {
+                                        selected = !selected;
+                                        widget.homeCity.changeHome(
+                                            snapshot.data['weather']);
+                                      });
+                                      await widget.homeCity.saveHome();
+                                      final snackBar = SnackBar(content: Text('Home Changed!'));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    },
+                                  ),
+                                )
+                              ],
                               leading: IconButton(
                                 icon: Icon(Icons.arrow_back_ios),
                                 onPressed: () {

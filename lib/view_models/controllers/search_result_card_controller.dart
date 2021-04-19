@@ -12,9 +12,10 @@ class SearchResultCardController {
   ScrollController controller;
   bool likeTapped = false;
   bool homeTapped = false;
+
   SearchResultCardController({this.city, this.controller});
 
-  void homeTap(){
+  void homeTap() {
     homeTapped = !homeTapped;
   }
 
@@ -26,13 +27,13 @@ class SearchResultCardController {
       citiesHandler.cities.cities.remove(city);
   }
 
-  Future<Widget> getData() async {
+  Future<Map<String, dynamic>> getData() async {
     Weather weather;
     var response = await API.makeOneCall(city.lat, city.lon);
 
     if (response.statusCode == 200) {
       weather = Weather.fromJson(jsonDecode(response.body));
-      return CityView(weather, controller);
+      return {'widget': CityView(weather, controller), 'weather': weather};
     } else
       throw Exception("Connection Failed");
   }

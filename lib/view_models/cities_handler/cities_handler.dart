@@ -6,13 +6,12 @@ class CitiesHandler {
   FileHandler fileHandler;
 
   CitiesHandler() {
-    this.fileHandler = FileHandler();
+    this.fileHandler = FileHandler('cities');
   }
 
   Future<void> load() async {
     try {
       Map<String, dynamic> json = await fileHandler.read();
-      print("from load " + json.length.toString());
       if (json.length == 0)
         cities = Cities();
       else

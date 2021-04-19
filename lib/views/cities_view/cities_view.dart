@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
-import 'package:weather/view_models/controllers/cities_view_controller.dart';
 import 'package:weather/view_models/database_handler/city.dart';
+import 'package:weather/view_models/home_city/home_city.dart';
 
 class CitiesView extends StatefulWidget {
   ScrollController controller;
   CitiesHandler citiesHandler;
-
-  CitiesView(this.controller, this.citiesHandler);
+  HomeCity homeCity;
+  CitiesView(this.controller, this.citiesHandler, this.homeCity);
 
   @override
   _CitiesViewState createState() => _CitiesViewState();
 }
 
 class _CitiesViewState extends State<CitiesView> {
-  CitiesViewController controller = CitiesViewController();
 
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 

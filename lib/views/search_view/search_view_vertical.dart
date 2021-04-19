@@ -4,29 +4,36 @@ import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_view_controller.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
+import 'package:weather/view_models/home_city/home_city.dart';
 
 class SearchViewVertical extends StatefulWidget {
   ScrollController _controller;
   DatabaseHandler databaseHandler;
   CitiesHandler citiesHandler;
+  HomeCity homeCity;
 
-  SearchViewVertical(
-      this._controller, this.databaseHandler, this.citiesHandler);
+  SearchViewVertical(this._controller, this.databaseHandler, this.citiesHandler,
+      this.homeCity);
 
   @override
   _SearchViewVerticalState createState() => _SearchViewVerticalState(
-      _controller, databaseHandler, this.citiesHandler);
+      _controller, databaseHandler, this.citiesHandler, this.homeCity);
 }
 
 class _SearchViewVerticalState extends State<SearchViewVertical> {
   SearchViewController controller;
+  HomeCity homeCity;
 
-  _SearchViewVerticalState(ScrollController scrollController,
-      DatabaseHandler databaseHandler, CitiesHandler citiesHandler) {
+  _SearchViewVerticalState(
+      ScrollController scrollController,
+      DatabaseHandler databaseHandler,
+      CitiesHandler citiesHandler,
+      HomeCity homeCity) {
     this.controller = SearchViewController(
         citiesHandler: citiesHandler,
         controller: scrollController,
-        databaseHandler: databaseHandler);
+        databaseHandler: databaseHandler,
+        homeCity: homeCity);
   }
 
   @override

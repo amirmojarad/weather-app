@@ -5,6 +5,7 @@ import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/main_page_controller.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
+import 'package:weather/view_models/home_city/home_city.dart';
 import 'package:weather/views/cities_view/cities_view.dart';
 import 'package:weather/views/city_view/city_view.dart';
 import 'package:weather/views/city_view/home_view.dart';
@@ -16,8 +17,9 @@ import 'widgets/my_bottom_navigation_bar.dart';
 class MainPage extends StatefulWidget {
   DatabaseHandler databaseHandler;
   CitiesHandler citiesHandler;
+  HomeCity homeCity;
 
-  MainPage(this.databaseHandler, this.citiesHandler);
+  MainPage(this.databaseHandler, this.citiesHandler, this.homeCity);
 
   @override
   _MainPageState createState() =>
@@ -77,9 +79,9 @@ class _MainPageState extends State<MainPage> {
             controller: controller.controller,
             onPageChanged: (value) => onPageChange(value),
             children: [
-              HomeView(_controller),
-              SearchViewVertical(_controller, databaseHandler, citiesHandler),
-              CitiesView(_controller, citiesHandler),
+              HomeView(_controller, widget.homeCity),
+              SearchViewVertical(_controller, databaseHandler, citiesHandler, widget.homeCity),
+              CitiesView(_controller, citiesHandler, widget.homeCity),
             ],
           ),
           AnimatedOpacity(

@@ -5,10 +5,13 @@ import 'package:path_provider/path_provider.dart';
 
 class FileHandler {
   File file;
+  String type;
+
+  FileHandler(this.type);
 
   Future<void> _fetchFile() async {
     String path = await _localPath;
-    file = File('$path/cities.json');
+    file = File('$path/${type}.json');
   }
 
   Future<Map<String, dynamic>> read() async {
@@ -32,7 +35,6 @@ class FileHandler {
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
-
     return directory.path;
   }
 }
