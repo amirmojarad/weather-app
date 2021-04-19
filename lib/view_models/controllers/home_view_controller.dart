@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:weather/models/api/hourly/data.dart';
+import 'package:flutter/material.dart';
 import 'package:weather/models/api/weather.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/api_handler/responses.dart' as API;
@@ -29,7 +29,15 @@ class HomeViewController {
     return Center(
       child: Container(
         child: Center(
-          child: Image.asset('assets/images/No Internet Connection UI.jpg'),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/No Internet Connection UI.jpg',
+                  width: device.width / 2, height: device.height / 2),
+              Text("No Internet Connection")
+            ],
+          ),
         ),
         color: Color(0xffE2E6E7),
         width: device.width,
