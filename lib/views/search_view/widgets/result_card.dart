@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_result_card_controller.dart';
@@ -59,40 +58,7 @@ class _ResultCardState extends State<ResultCard> {
                   builder: (context) => FutureBuilder(
                     future: controller.getData(),
                     builder: (context, snapshot) => snapshot.hasData
-                        ? Scaffold(
-                            body: snapshot.data['widget'],
-                            appBar: AppBar(
-                              actions: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: GestureDetector(
-                                    child: Icon(
-                                        selected
-                                            ? Icons.home
-                                            : Icons.home_outlined,
-                                        size: 30),
-                                    onTap: () async {
-                                      setState(() {
-                                        selected = !selected;
-                                        widget.homeCity.changeHome(
-                                            snapshot.data['weather']);
-                                      });
-                                      await widget.homeCity.saveHome();
-                                      final snackBar = SnackBar(content: Text('Home Changed!'));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
-                                    },
-                                  ),
-                                )
-                              ],
-                              leading: IconButton(
-                                icon: Icon(Icons.arrow_back_ios),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ),
-                          )
+                        ? buildResultCity(snapshot, context)
                         : Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height,
@@ -151,6 +117,38 @@ class _ResultCardState extends State<ResultCard> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Scaffold buildResultCity(AsyncSnapshot snapshot, BuildContext context) {
+    return Scaffold(
+      body: snapshot.data['widget'],
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              child:
+                  Icon(selected ? Icons.home : Icons.home_outlined, size: 30),
+              onTap: () async {
+                setState(() {
+                  selected = !selected;
+                  widget.homeCity.changeHome(snapshot.data['weather']);
+                });
+                await widget.homeCity.saveHome();
+                final snackBar = SnackBar(content: Text('Home Changed!'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+          )
+        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
     );

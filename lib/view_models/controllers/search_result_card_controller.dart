@@ -21,9 +21,9 @@ class SearchResultCardController {
 
   void addToFavorites(CitiesHandler citiesHandler) {
     likeTapped = !likeTapped;
-    if (likeTapped)
+    if (likeTapped && !citiesHandler.cities.cities.contains(city)) {
       citiesHandler.cities.cities.add(city);
-    else
+    } else
       citiesHandler.cities.cities.remove(city);
   }
 

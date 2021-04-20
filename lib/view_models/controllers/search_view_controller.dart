@@ -33,7 +33,6 @@ class SearchViewController {
         this.homeCity
       );
     });
-    print(cityCards.length);
     return cityCards;
   }
 

@@ -1,13 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:weather/models/utils/device.dart';
+import 'package:weather/models/api/weather.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
-import 'package:weather/view_models/database_handler/city.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
+import 'package:weather/views/cities_view/widgets/cities_card.dart';
+import 'package:weather/view_models/api_handler/responses.dart' as API;
 
 class CitiesView extends StatefulWidget {
   ScrollController controller;
   CitiesHandler citiesHandler;
   HomeCity homeCity;
+
   CitiesView(this.controller, this.citiesHandler, this.homeCity);
 
   @override
@@ -15,12 +19,10 @@ class CitiesView extends StatefulWidget {
 }
 
 class _CitiesViewState extends State<CitiesView> {
-
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    print(widget.citiesHandler.cities.cities.length);
     return SafeArea(
       child: SingleChildScrollView(
         controller: widget.controller,
@@ -28,74 +30,22 @@ class _CitiesViewState extends State<CitiesView> {
             ? Column(
                 children: List.generate(
                     widget.citiesHandler.cities.cities.length, (index) {
-                  return buildCityCard(
-                      widget.citiesHandler.cities.cities[index]);
+                  var city = widget.citiesHandler.cities.cities[index];
+                  return CitiesCard(widget.citiesHandler.cities.cities[index],
+                      () async {
+                    var response = await API.makeOneCall(city.lat, city.lon);
+                    Weather weather =
+                        Weather.fromJson(await jsonDecode(response.body));
+                    widget.homeCity.changeHome(weather);
+                    await widget.homeCity.saveHome();
+                  },
+                      widget.homeCity.weather.lat == city.lat &&
+                          widget.homeCity.weather.lon == city.lon);
                 }),
               )
             : Center(
                 child: Text("List Is Empty"),
               ),
-      ),
-    );
-  }
-
-  Padding buildCityCard(City city) {
-    BorderRadius borderRadius = BorderRadius.only(
-      topLeft: Radius.circular(2),
-      topRight: Radius.circular(30),
-      bottomLeft: Radius.circular(30),
-      bottomRight: Radius.circular(2),
-    );
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color(0xff61DDFF),
-          borderRadius: borderRadius,
-          gradient: LinearGradient(
-            colors: [
-              Color(0xff04E6FF),
-              Color(0xff3AEBFF),
-              Color(0xff71F1FF),
-              Color(0xffADF7FF),
-            ],
-          ),
-        ),
-        width: device.width,
-        height: 120,
-        child: Material(
-          borderRadius: borderRadius,
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Color(0xffDAF7FF),
-            borderRadius: borderRadius,
-            onTap: () {},
-            child: AspectRatio(
-              aspectRatio: 1.1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 18.0, top: 15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      city.city,
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(city.country,
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w500)),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }
