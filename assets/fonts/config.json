@@ -1,0 +1,192 @@
+{
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "9adab49a7bcef1b35f60c97d469e6f6c",
+      "css": "like",
+      "code": 59393,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M511.7 51.9C593 0.5 701-13.7 794.3 16.3 997.3 81.7 1060.3 302.9 1003.9 479 917 755.5 545.6 961.8 529.9 970.4 524.3 973.5 518.1 975.1 511.9 975.1 505.7 975.1 499.5 973.5 493.9 970.5 478.3 962 109.6 758.8 19.8 479 19.7 479 19.7 479 19.7 479-36.7 302.9 26.1 81.6 228.9 16.3 324.1-14.5 427.8-1 511.7 51.9ZM251.9 87.6C87.8 140.6 46.6 317 91.2 456.1 161.3 674.3 438.2 850.6 511.8 894.3 585.7 850.1 864.6 671.9 932.5 456.4 977 317.1 935.7 140.6 771.4 87.6 691.8 62.1 598.9 77.6 534.8 127.3 521.4 137.5 502.8 137.8 489.3 127.6 421.4 76.5 332.7 61.6 251.9 87.6ZM723.4 186.9C791.5 209 839.3 269.3 845.1 340.7 846.8 361.3 831.4 379.4 810.8 381.1 809.7 381.2 808.7 381.2 807.7 381.2 788.3 381.2 771.9 366.4 770.3 346.8 767 305.7 739.5 271 700.4 258.3 680.6 251.9 669.8 230.8 676.2 211.1 682.6 191.4 703.6 180.7 723.4 186.9Z",
+        "width": 1025
+      },
+      "search": [
+        "combined-shape"
+      ]
+    },
+    {
+      "uid": "4374903caab4d8727a41f4501f8bdcac",
+      "css": "combined-shape-1",
+      "code": 59392,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M463.8 0C719.5 0 927.5 208 927.5 463.7 927.5 584.4 881.2 694.4 805.4 777L954.5 925.7C968.4 939.7 968.5 962.3 954.5 976.2 947.6 983.3 938.4 986.7 929.2 986.7 920.2 986.7 911 983.3 904 976.3L753.1 825.9C673.8 889.4 573.1 927.5 463.8 927.5 208 927.5 0 719.4 0 463.7 0 208 208 0 463.8 0ZM463.8 71.4C247.4 71.4 71.4 247.4 71.4 463.7 71.4 680 247.4 856 463.8 856 680 856 856 680 856 463.7 856 247.4 680 71.4 463.8 71.4Z",
+        "width": 976
+      },
+      "search": [
+        "combined-shape"
+      ]
+    },
+    {
+      "uid": "0a9a81d03f412bf72f32c8a906b87f3e",
+      "css": "sun-cloud-little-rain",
+      "code": 59395,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "sun-cloud-little-rain"
+      ]
+    },
+    {
+      "uid": "d6f7555d8a4fddac662087852b89a401",
+      "css": "moon-cloud-mid-rain",
+      "code": 59396,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "moon-cloud-mid-rain"
+      ]
+    },
+    {
+      "uid": "4b6d08a193b4094fa5353c4aa069f2c3",
+      "css": "mid-snow-fast-winds",
+      "code": 59397,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "mid-snow-fast-winds"
+      ]
+    },
+    {
+      "uid": "9171e64ecb1b27d1d889af5b1ac042d4",
+      "css": "sun-cloud-angled-rain",
+      "code": 59398,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "sun-cloud-angled-rain"
+      ]
+    },
+    {
+      "uid": "552f96a78fa8a687e3dc731083b2eb77",
+      "css": "big-rain-drops",
+      "code": 59399,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "big-rain-drops"
+      ]
+    },
+    {
+      "uid": "453ca0f5317866886fb2e8d3818fa413",
+      "css": "moon-cloud-fast-wind",
+      "code": 59400,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "moon-cloud-fast-wind"
+      ]
+    },
+    {
+      "uid": "10d7309d53ee4088e28cd5b6aee4d7dc",
+      "css": "sun-cloud-mid-rain",
+      "code": 59401,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "sun-cloud-mid-rain"
+      ]
+    },
+    {
+      "uid": "c5803ae24e6e977c389de13d329336cb",
+      "css": "tornado",
+      "code": 59402,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "tornado"
+      ]
+    },
+    {
+      "uid": "64d7056bbbacc07a64e5f948e7d40f2d",
+      "css": "cloud-3-zap",
+      "code": 59403,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "cloud-3-zap"
+      ]
+    },
+    {
+      "uid": "fa6271a81b2e9a29635a5053630b503a",
+      "css": "moon-fast-wind",
+      "code": 59404,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "moon-fast-wind"
+      ]
+    },
+    {
+      "uid": "42e309c7fe9c666e03e3ff40f7eee70b",
+      "css": "zaps",
+      "code": 59405,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "zaps"
+      ]
+    }
+  ]
+}

@@ -7,8 +7,8 @@ import 'package:weather/view_models/controllers/main_page_controller.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
 import 'package:weather/views/cities_view/cities_view.dart';
-import 'package:weather/views/city_view/city_view.dart';
 import 'package:weather/views/city_view/home_view.dart';
+import 'package:weather/views/my_flutter_app_icons.dart';
 import 'package:weather/views/search_view/search_view_vertical.dart';
 
 import 'widgets/my_app_bar.dart';
@@ -80,7 +80,8 @@ class _MainPageState extends State<MainPage> {
             onPageChanged: (value) => onPageChange(value),
             children: [
               HomeView(_controller, widget.homeCity),
-              SearchViewVertical(_controller, databaseHandler, citiesHandler, widget.homeCity),
+              SearchViewVertical(
+                  _controller, databaseHandler, citiesHandler, widget.homeCity),
               CitiesView(_controller, citiesHandler, widget.homeCity),
             ],
           ),
@@ -88,20 +89,21 @@ class _MainPageState extends State<MainPage> {
             opacity: show ? 1.0 : 0.0,
             duration: Duration(milliseconds: 500),
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.only(bottom: 4.0),
               child: BottomNavBar(
                 currentIndex: controller.index,
                 controller: controller.controller,
                 items: [
                   LineIcons.home,
-                  LineIcons.search,
-                  LineIcons.city,
+                  MyFlutterApp.combined_shape_1,
+                  MyFlutterApp.like,
                 ],
               ),
             ),
           )
         ],
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
     );
   }
 }

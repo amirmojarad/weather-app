@@ -19,7 +19,6 @@ Cities _$CitiesFromJson(Map<String, dynamic> json) {
   Cities cities = Cities();
   (json['cities'] as List).forEach((element) {
     cities.cities.add(City.fromJson(element));
-
   });
   return cities;
 }

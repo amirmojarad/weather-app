@@ -30,11 +30,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Color(0xff94FDFF),
-          Color(0xff5CF9FB),
-          Color(0xff5CF9FB),
-        ]),
+        border: Border.all(
+          color: Theme.of(context).accentIconTheme.color,
+        ),
+        color: Theme.of(context).backgroundColor,
         borderRadius: BorderRadius.circular(29),
       ),
       width: device.width - 100,

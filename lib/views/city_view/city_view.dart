@@ -51,10 +51,10 @@ class _CityViewState extends State<CityView> {
             buildCard(
               config: CustomConfig(
                 gradients: [
-                  [Colors.blue, Color(0xff00EFF7)],
-                  [Colors.blue[800], Color(0xff4BB8DF)],
-                  [Color(0xff65CCCD), Color(0xff91FDFF)],
-                  [Color(0xff0886FD), Color(0xff2A8FED)]
+                  [Color(0xff1D9AFF).withOpacity(0.9), Color(0xff1D9AFF).withOpacity(0.05)],
+                  [Color(0xff83B7FF), Color(0xff83B7FF)],
+                  [Color(0xff65CCCD), Color(0xff2C79E5)],
+                  [Color(0xffF1FFFC), Color(0xffF1FFFC)]
                 ],
                 durations: [35000, 19440, 10800, 6000],
                 heightPercentages: [0.20, 0.23, 0.25, 0.30],

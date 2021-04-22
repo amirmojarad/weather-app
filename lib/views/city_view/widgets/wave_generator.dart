@@ -15,8 +15,7 @@ buildCard({
       clipBehavior: Clip.antiAlias,
       child: WaveWidget(
         config: config,
-        backgroundColor: Color(0xff1D9AFF).withOpacity(0.05),
-        // backgroundImage: backgroundImage,
+        backgroundColor: Colors.transparent,
         size: Size(double.infinity, double.infinity),
         waveAmplitude: 0,
       ),

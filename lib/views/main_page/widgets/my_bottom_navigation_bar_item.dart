@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:weather/models/utils/device.dart';
+import 'package:weather/views/utils/colors.dart' as colors;
 
 class BottomNavBarItem extends StatelessWidget {
   IconData data;
@@ -40,9 +41,11 @@ class BottomNavBarItem extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
-                        width: device.width / 10,
-                        height: 3,
-                        color: Color(0xff00539C),
+                        decoration: BoxDecoration(
+                            color: colors.kDot,
+                            borderRadius: BorderRadius.circular(25)),
+                        width: 5,
+                        height: 5,
                       ),
                     )
                   : Container()

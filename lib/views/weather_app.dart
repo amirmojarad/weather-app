@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:weather/view_models/controllers/weather_app_controller.dart';
-import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/views/progressbars/welcome_progress.dart';
 import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/localizations/app_localizations.dart';
 import 'main_page/main_page.dart';
+import 'package:weather/views/utils/fonts.dart' as fonts;
+import 'package:weather/views/utils/colors.dart' as colors;
 
 class WeatherApp extends StatefulWidget {
   @override
@@ -18,15 +19,22 @@ class _WeatherAppState extends State<WeatherApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        backgroundColor: Colors.yellow,
+        backgroundColor: colors.kBackgroundColor,
+        focusColor: colors.kFocus,
+        iconTheme: IconThemeData(color: colors.kIcon),
+        accentIconTheme: IconThemeData(color: colors.kAccentIconColor),
+        dividerColor: colors.kDivider,
+        errorColor: colors.kError,
+        // accentColor: Color(0xff78D9EA),
+        accentColor: Colors.red,
         textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(
-              fontSize: 28.0, color: Colors.black, fontWeight: FontWeight.bold),
-          bodyText1: TextStyle(
-              fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.w600),
-        ),
+            headline1: fonts.headline1,
+            headline2: fonts.headline2,
+            headline3: fonts.headline3,
+            button: fonts.button,
+            bodyText1: fonts.bodyText1,
+            bodyText2: fonts.bodyText2,
+            headline4: fonts.headline4),
       ),
       supportedLocales: [
         Locale('en', 'US'),

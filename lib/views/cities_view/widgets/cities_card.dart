@@ -2,110 +2,103 @@ import 'package:flutter/material.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 
+import 'action_bottom_sheet.dart';
+
 class CitiesCard extends StatefulWidget {
   City city;
-  Function function;
-  bool isSelected;
-  CitiesCard(this.city, this.function, this.isSelected);
+  Function setAsDefault;
+  Function delete;
+
+  CitiesCard(this.city, this.setAsDefault, this.delete);
 
   @override
-  _CitiesCardState createState() => _CitiesCardState(this.city, this.function, this.isSelected);
+  _CitiesCardState createState() => _CitiesCardState(this.city);
 }
 
 class _CitiesCardState extends State<CitiesCard> {
   City city;
-  bool homeSelected;
-  Function function;
 
-  _CitiesCardState(this.city, this.function, this.homeSelected);
-
-  BorderRadius borderRadius = BorderRadius.only(
-    topLeft: Radius.circular(2),
-    topRight: Radius.circular(30),
-    bottomLeft: Radius.circular(30),
-    bottomRight: Radius.circular(2),
+  _CitiesCardState(
+    this.city,
   );
+
+  BorderRadius borderRadius = BorderRadius.all(Radius.circular(12));
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color(0xff61DDFF),
-          borderRadius: borderRadius,
-          gradient: LinearGradient(
-            colors: [
-              Color(0xff04E6FF),
-              Color(0xff3AEBFF),
-              Color(0xff71F1FF),
-              Color(0xffADF7FF),
-            ],
-          ),
-        ),
-        width: device.width,
-        height: 120,
-        child: Material(
-          borderRadius: borderRadius,
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Color(0xffDAF7FF),
-            borderRadius: borderRadius,
-            onTap: () {},
-            child: AspectRatio(
-              aspectRatio: 1.1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 18.0, top: 15),
-                child: Row(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.only(left: 16.0, right: 16),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+            ),
+            width: device.width,
+            height: 72,
+            child: Material(
+              borderRadius: borderRadius,
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: Color(0xffDAF7FF),
+                borderRadius: borderRadius,
+                onTap: () {},
+                child: AspectRatio(
+                  aspectRatio: 1.1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, left: 16),
+                    child: Row(
                       children: [
-                        Text(
-                          city.city,
-                          style: TextStyle(
-                              fontSize: 26, fontWeight: FontWeight.w600),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(city.city,
+                                style: Theme.of(context).textTheme.bodyText1),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: Text(city.country,
+                                  style: Theme.of(context).textTheme.headline3),
+                            )
+                          ],
                         ),
+                        Spacer(),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(city.country,
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.w500)),
-                        )
-                      ],
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Column(
-                        children: [
-                          Material(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Material(
                             color: Colors.transparent,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(20),
                               onTap: () async {
-                                setState(() {
-                                  homeSelected = !homeSelected;
-                                });
-                                await function();
+                                showModalBottomSheet(
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) {
+                                    return buildBottomSheet(
+                                        context: context,
+                                        city: city,
+                                        delete: widget.delete,
+                                        setAsDefault: widget.setAsDefault);
+                                  },
+                                );
                               },
-                              child: Icon(
-                                  homeSelected
-                                      ? Icons.home
-                                      : Icons.home_outlined,
-                                  size: 35),
+                              child: Icon(Icons.more_horiz_outlined, size: 35),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 8.0, right: 8, bottom: 16, top: 16),
+            child: SizedBox(width: device.width, child: Divider()),
+          ),
+        ],
       ),
     );
   }

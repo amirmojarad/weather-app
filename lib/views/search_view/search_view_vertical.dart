@@ -5,6 +5,7 @@ import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_view_controller.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
+import 'package:weather/views/my_flutter_app_icons.dart';
 
 class SearchViewVertical extends StatefulWidget {
   ScrollController _controller;
@@ -42,61 +43,79 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
       child: Container(
         width: device.width,
         height: device.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xffE7FFFA), Color(0xffF1FFFC)],
-          ),
-        ),
+        color: Theme.of(context).backgroundColor,
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 18),
-                  child: Container(
-                    width: device.width - 50,
-                    height: device.height / 10,
-                    child: TextFormField(
-                      controller: controller.textController,
-                      onEditingComplete: () {
-                        setState(() {
-                          controller.onEditingComplete();
-                        });
-                      },
-                      onTap: () {
-                        setState(() {
-                          controller.onTap();
-                        });
-                      },
-                      decoration: InputDecoration(
-                          suffixIcon: controller.textController.text.length != 0
-                              ? IconButton(
-                                  icon: Icon(Icons.cancel),
-                                  onPressed: () {
-                                    setState(() {
-                                      controller.cancelSearch();
-                                    });
-                                  },
-                                )
-                              : Icon(Icons.clear, color: Colors.transparent),
-                          focusColor: Colors.red,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                          prefixIcon: IconButton(
-                            icon: Icon(Icons.search),
-                            color: Colors.blue,
-                            onPressed: () {
-                              controller.onSearchPressed();
-                            },
-                          ),
-                          hintText:
-                              "${AppLocalizations.of(context).translate("search")}..."),
+                  padding: const EdgeInsets.only(top: 18, left: 16, right: 16),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 42.0),
+                    child: Container(
+                      width: device.width,
+                      height: 48,
+                      child: TextFormField(
+                        onChanged: (value){
+                          //TODO search result
+                          setState(() {
+
+                          });
+                        },
+                        onFieldSubmitted: (value) {
+                        },
+                        style: Theme.of(context).textTheme.headline3,
+                        controller: controller.textController,
+                        onEditingComplete: () {
+                          setState(() {
+                            controller.onEditingComplete();
+                          });
+                        },
+                        onTap: () {
+                          setState(() {
+                            controller.onTap();
+                          });
+                        },
+                        decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.only(top: 12, bottom: 12, left: 52),
+                            suffixIcon: controller.textController.text.length !=
+                                    0
+                                ? IconButton(
+                                    icon: Icon(
+                                      Icons.clear,
+                                      color: Theme.of(context)
+                                          .accentIconTheme
+                                          .color,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        controller.cancelSearch();
+                                      });
+                                    },
+                                  )
+                                : Icon(Icons.clear, color: Colors.transparent),
+                            focusColor: Colors.red,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).focusColor),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).focusColor),
+                            ),
+                            prefixIcon: IconButton(
+                              icon: Icon(MyFlutterApp.combined_shape_1),
+                              color: Theme.of(context).iconTheme.color,
+                              onPressed: () {
+                                controller.onSearchPressed();
+                              },
+                            ),
+                            hintText:
+                                "${AppLocalizations.of(context).translate("search")}..."),
+                      ),
                     ),
                   ),
                 ),
@@ -112,25 +131,25 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: controller.fillCards(),
-                                  ),
-                                  controller.size > 10
-                                      ? GestureDetector(
-                                          child: Text("Tap to More..."),
-                                          onTap: () {
-                                            setState(
-                                              () {
-                                                controller.tapOnMore();
-                                              },
-                                            );
-                                          },
-                                        )
-                                      : Container()
-                                ])
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: controller.fillCards(),
+                                ),
+                                controller.size > 10
+                                    ? GestureDetector(
+                                        child: Text("Tap to More..."),
+                                        onTap: () {
+                                          setState(
+                                            () {
+                                              controller.tapOnMore();
+                                            },
+                                          );
+                                        },
+                                      )
+                                    : Container()
+                              ],
+                            )
                           : controller.clearTapped
                               ? Container()
                               : Text("Not match anything"),

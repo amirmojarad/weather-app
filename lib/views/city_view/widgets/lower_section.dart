@@ -6,6 +6,7 @@ import 'package:weather/models/utils/converters/date_converters.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/api_handler/api_utils.dart';
 import 'package:weather/view_models/controllers/lower_section_controller.dart';
+import 'package:weather/views/utils/colors.dart' as colors;
 
 class LowerSection extends StatefulWidget {
   Weather weather;
@@ -100,9 +101,12 @@ class _LowerSectionState extends State<LowerSection> {
         child: Text(
           title,
           style: TextStyle(
-            color:
-                thisIndex == controller.selected ? Colors.black : Colors.grey,
-            fontSize: 20,
+            color: thisIndex == controller.selected
+                ? colors.kButtonColor
+                : colors.kButtonColor.withOpacity(0.5),
+            fontSize: Theme.of(context).textTheme.button.fontSize,
+            fontWeight: Theme.of(context).textTheme.button.fontWeight,
+            letterSpacing: Theme.of(context).textTheme.button.letterSpacing,
           ),
         ),
       ),
@@ -168,7 +172,7 @@ class _LowerSectionState extends State<LowerSection> {
               (data.dt as DateTime).hour != DateTime.now().hour
                   ? "${(data.dt as DateTime).hour}:00"
                   : "Now",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+              style: Theme.of(context).textTheme.headline1),
           Padding(
               padding: const EdgeInsets.only(bottom: 20, top: 5),
               child: getIcon(data.weather.icon, 25)),
@@ -177,26 +181,21 @@ class _LowerSectionState extends State<LowerSection> {
             children: [
               Text(
                 "${data.temp.toInt()}",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 1.0),
                 child: Text(
                   "o",
-                  style: TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )
             ],
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              "${data.weather.description}",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            child: Text("${data.weather.description}",
+                style: Theme.of(context).textTheme.bodyText2),
           ),
         ],
       ),

@@ -23,6 +23,7 @@ dependencies:
   shared_preferences: ^2.0.5
   path_provider: ^2.0.1
   connectivity: ^3.0.3
+#  flutter_launcher_icons: ^0.9.0
 
   flutter_localizations:
     sdk: flutter
@@ -35,10 +36,14 @@ flutter:
 
   uses-material-design: true
   fonts:
-    - family: Shabnam
+    - family:  MyFlutterApp
       fonts:
-        - asset: fonts/Shabnam.ttf
-
+        - asset: assets/fonts/fonts/MyFlutterApp.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf
   assets:
     - lang/en.json
     - lang/fa.json

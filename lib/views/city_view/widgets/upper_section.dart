@@ -43,9 +43,9 @@ Widget buildCurrentData(BuildContext context, Weather weather) {
       child: Column(
         children: [
           Text(getCityName(),
-              style: Theme.of(context).textTheme.bodyText2),
+              style: Theme.of(context).textTheme.headline2),
           Text(weather.current.weather.description,
-              style: Theme.of(context).textTheme.bodyText1),
+              style: Theme.of(context).textTheme.headline3),
           Padding(
             padding: const EdgeInsets.only(top: 40.0),
             child: Row(
@@ -121,12 +121,12 @@ Column buildTag(
       SizedBox(height: 5),
       Text(
         title,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        style: Theme.of(context).textTheme.bodyText1,
       ),
       SizedBox(height: 5),
       Text(
         "${value.toString()}$postFix",
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyText2,
       )
     ],
   );

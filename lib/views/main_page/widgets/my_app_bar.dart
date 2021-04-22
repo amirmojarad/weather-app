@@ -8,9 +8,11 @@ class MyAppBar extends StatelessWidget {
   @override
   AppBar build(BuildContext context) {
     return AppBar(
+      backgroundColor: Theme.of(context).backgroundColor,
       actions: [
         IconButton(
-          icon: Icon(Icons.info_outline),
+          icon: Icon(Icons.info_outline,
+              color: Theme.of(context).accentIconTheme.color, size: 24,),
           onPressed: () {
             showDialog(
                 barrierColor: Colors.white.withOpacity(0.6),
@@ -93,10 +95,8 @@ class MyAppBar extends StatelessWidget {
           },
         ),
       ],
-      backgroundColor: Color(0xff04C0EA),
-      elevation: 20,
-      title: Text("Weather App",
-          style: TextStyle(color: Colors.white.withOpacity(0.9))),
+      // elevation: 5,
+      title: Text("Weather App", style: Theme.of(context).textTheme.headline1),
     );
   }
 
