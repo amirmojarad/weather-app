@@ -13,6 +13,7 @@ import 'package:weather/views/search_view/search_view_vertical.dart';
 
 import 'widgets/my_app_bar.dart';
 import 'widgets/my_bottom_navigation_bar.dart';
+import 'widgets/my_drawer.dart';
 
 class MainPage extends StatefulWidget {
   DatabaseHandler databaseHandler;
@@ -68,7 +69,21 @@ class _MainPageState extends State<MainPage> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
     );
+
     return Scaffold(
+      drawer: Drawer(
+        child: SafeArea(
+          child: Container(
+            height: device.height,
+            child: buildDrawer(
+              context,
+              stateUpdated: () {
+                setState(() {});
+              },
+            ),
+          ),
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       appBar:
           PreferredSize(preferredSize: Size.fromHeight(60), child: MyAppBar()),

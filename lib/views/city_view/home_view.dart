@@ -24,11 +24,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xffE7FFFA), Color(0xffF1FFFC)],
-        ),
-      ),
+      color: Theme.of(context).backgroundColor,
       child: FutureBuilder(
         builder: (context, snapshot) {
           if (snapshot.hasData) return snapshot.data;

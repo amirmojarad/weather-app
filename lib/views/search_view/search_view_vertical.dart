@@ -64,7 +64,7 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                         },
                         onFieldSubmitted: (value) {
                         },
-                        style: Theme.of(context).textTheme.headline3,
+                        style: Theme.of(context).textTheme.headline5,
                         controller: controller.textController,
                         onEditingComplete: () {
                           setState(() {

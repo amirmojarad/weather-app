@@ -14,67 +14,77 @@ Container buildBottomSheet(
       ),
       color: Theme.of(context).backgroundColor,
     ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(city.city, style: Theme.of(context).textTheme.bodyText1),
-              Padding(
-                padding: const EdgeInsets.only(top: 2.0),
-                child: Text(city.country,
-                    style: Theme.of(context).textTheme.headline3),
-              )
-            ],
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(city.city, style: Theme.of(context).textTheme.bodyText1),
+                Padding(
+                  padding: const EdgeInsets.only(top: 2.0),
+                  child: Text(city.country,
+                      style: Theme.of(context).textTheme.headline5),
+                )
+              ],
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(width: device.width, child: Divider()),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () async {
-                  await setAsDefault();
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  "Set As Default",
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: GestureDetector(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(width: device.width, child: Divider()),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                GestureDetector(
                   onTap: () async {
-                    await delete();
+                    await setAsDefault();
                     Navigator.pop(context);
                   },
                   child: Text(
-                    "Delete",
-                    style: TextStyle(
-                      color: Theme.of(context).errorColor,
-                      fontFamily:
-                          Theme.of(context).textTheme.headline3.fontFamily,
-                      fontWeight:
-                          Theme.of(context).textTheme.headline3.fontWeight,
+                    "Set As Default",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+                  child: SizedBox(
+                    width: device.width,
+                    child: Divider(),
+                    height: 3,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      await delete();
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Delete",
+                      style: TextStyle(
+                        color: Theme.of(context).errorColor,
+                        fontFamily:
+                            Theme.of(context).textTheme.headline5.fontFamily,
+                        fontWeight:
+                            Theme.of(context).textTheme.headline5.fontWeight,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

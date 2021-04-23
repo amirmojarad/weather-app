@@ -32,6 +32,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).accentIconTheme.color,
+          width: 0.5
         ),
         color: Theme.of(context).backgroundColor,
         borderRadius: BorderRadius.circular(29),

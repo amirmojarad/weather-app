@@ -69,12 +69,12 @@ class _ResultCardState extends State<ResultCard> {
                       children: [
                         Text(
                           controller.city.city,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.bodyText2,
                         ),
                         SizedBox(height: 10),
                         Text(
                           controller.city.country,
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
                     ),

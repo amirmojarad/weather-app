@@ -5,14 +5,21 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:weather/models/utils/device.dart';
 
 class MyAppBar extends StatelessWidget {
+  Function function;
+
+  MyAppBar({this.function});
+
   @override
   AppBar build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).backgroundColor,
       actions: [
         IconButton(
-          icon: Icon(Icons.info_outline,
-              color: Theme.of(context).accentIconTheme.color, size: 24,),
+          icon: Icon(
+            Icons.info_outline,
+            color: Theme.of(context).accentIconTheme.color,
+            size: 24,
+          ),
           onPressed: () {
             showDialog(
                 barrierColor: Colors.white.withOpacity(0.6),
@@ -96,7 +103,7 @@ class MyAppBar extends StatelessWidget {
         ),
       ],
       // elevation: 5,
-      title: Text("Weather App", style: Theme.of(context).textTheme.headline1),
+      title: Text("Weather App", style: Theme.of(context).textTheme.headline5),
     );
   }
 

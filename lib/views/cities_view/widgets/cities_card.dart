@@ -54,11 +54,11 @@ class _CitiesCardState extends State<CitiesCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(city.city,
-                                style: Theme.of(context).textTheme.bodyText1),
+                                style: Theme.of(context).textTheme.bodyText2),
                             Padding(
                               padding: const EdgeInsets.only(top: 2.0),
                               child: Text(city.country,
-                                  style: Theme.of(context).textTheme.headline3),
+                                  style: Theme.of(context).textTheme.headline6),
                             )
                           ],
                         ),

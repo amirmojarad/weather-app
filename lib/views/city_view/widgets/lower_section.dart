@@ -172,7 +172,7 @@ class _LowerSectionState extends State<LowerSection> {
               (data.dt as DateTime).hour != DateTime.now().hour
                   ? "${(data.dt as DateTime).hour}:00"
                   : "Now",
-              style: Theme.of(context).textTheme.headline1),
+              style: Theme.of(context).textTheme.bodyText2),
           Padding(
               padding: const EdgeInsets.only(bottom: 20, top: 5),
               child: getIcon(data.weather.icon, 25)),

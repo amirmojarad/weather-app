@@ -18,23 +18,30 @@ class _WeatherAppState extends State<WeatherApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //Todo Dark theme
+      darkTheme: ThemeData(),
       theme: ThemeData(
         backgroundColor: colors.kBackgroundColor,
         focusColor: colors.kFocus,
         iconTheme: IconThemeData(color: colors.kIcon),
-        accentIconTheme: IconThemeData(color: colors.kAccentIconColor),
         dividerColor: colors.kDivider,
         errorColor: colors.kError,
+        accentIconTheme:
+            IconThemeData(color: colors.kAccentIconColor, size: 20),
+        primaryIconTheme: IconThemeData(color: colors.kIcon, size: 24),
         // accentColor: Color(0xff78D9EA),
-        accentColor: Colors.red,
+        accentColor: colors.kAccentColor,
         textTheme: TextTheme(
-            headline1: fonts.headline1,
-            headline2: fonts.headline2,
-            headline3: fonts.headline3,
-            button: fonts.button,
-            bodyText1: fonts.bodyText1,
-            bodyText2: fonts.bodyText2,
-            headline4: fonts.headline4),
+          headline1: fonts.headline1,
+          headline2: fonts.headline2,
+          headline3: fonts.headline3,
+          headline4: fonts.headline4,
+          headline5: fonts.headline5,
+          headline6: fonts.headline6,
+          button: fonts.button,
+          bodyText1: fonts.bodyText1,
+          bodyText2: fonts.bodyText2,
+        ),
       ),
       supportedLocales: [
         Locale('en', 'US'),
