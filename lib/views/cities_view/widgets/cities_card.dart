@@ -4,30 +4,19 @@ import 'package:weather/view_models/database_handler/city.dart';
 
 import 'action_bottom_sheet.dart';
 
-class CitiesCard extends StatefulWidget {
+class CitiesCard extends StatelessWidget {
   City city;
   Function setAsDefault;
   Function delete;
   Function setMainState;
+  BorderRadius borderRadius = BorderRadius.all(Radius.circular(12));
 
   CitiesCard({this.city, this.setAsDefault, this.delete, this.setMainState});
 
   @override
-  _CitiesCardState createState() => _CitiesCardState(this.city);
-}
-
-class _CitiesCardState extends State<CitiesCard> {
-  City city;
-
-  _CitiesCardState(
-    this.city,
-  );
-
-  BorderRadius borderRadius = BorderRadius.all(Radius.circular(12));
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
+      key: UniqueKey(),
       padding: const EdgeInsets.only(left: 16.0, right: 16),
       child: Column(
         children: [
@@ -78,12 +67,15 @@ class _CitiesCardState extends State<CitiesCard> {
                                     return buildBottomSheet(
                                       context: context,
                                       city: city,
-                                      delete: widget.delete,
-                                      setAsDefault: widget.setAsDefault,
-                                      setMainState: widget.setMainState,
+                                      delete: delete,
+                                      setAsDefault: setAsDefault,
+                                      setMainState: setMainState,
                                     );
                                   },
                                 );
+                                _showModal.then((value) {
+                                  setMainState();
+                                });
                               },
                               child: Icon(Icons.more_horiz_outlined, size: 35),
                             ),
