@@ -3,7 +3,11 @@ import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 
 Container buildBottomSheet(
-    {BuildContext context, City city, Function setAsDefault, Function delete}) {
+    {BuildContext context,
+    City city,
+    Function setAsDefault,
+    Function delete,
+    Function setMainState}) {
   return Container(
     width: device.width,
     height: device.height / 5,
@@ -44,8 +48,18 @@ Container buildBottomSheet(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () async {
-                    await setAsDefault();
+                  onTap: () {
+                    FutureBuilder(
+                      future: setAsDefault(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData)
+                          return Container(
+                              color: Colors.white,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
+                        return null;
+                      },
+                    );
                     Navigator.pop(context);
                   },
                   child: Text(

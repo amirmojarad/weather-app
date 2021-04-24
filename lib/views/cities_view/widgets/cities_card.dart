@@ -8,8 +8,9 @@ class CitiesCard extends StatefulWidget {
   City city;
   Function setAsDefault;
   Function delete;
+  Function setMainState;
 
-  CitiesCard(this.city, this.setAsDefault, this.delete);
+  CitiesCard({this.city, this.setAsDefault, this.delete, this.setMainState});
 
   @override
   _CitiesCardState createState() => _CitiesCardState(this.city);
@@ -70,15 +71,17 @@ class _CitiesCardState extends State<CitiesCard> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(20),
                               onTap: () async {
-                                showModalBottomSheet(
+                                Future<void> _showModal = showModalBottomSheet(
                                   backgroundColor: Colors.transparent,
                                   context: context,
                                   builder: (context) {
                                     return buildBottomSheet(
-                                        context: context,
-                                        city: city,
-                                        delete: widget.delete,
-                                        setAsDefault: widget.setAsDefault);
+                                      context: context,
+                                      city: city,
+                                      delete: widget.delete,
+                                      setAsDefault: widget.setAsDefault,
+                                      setMainState: widget.setMainState,
+                                    );
                                   },
                                 );
                               },

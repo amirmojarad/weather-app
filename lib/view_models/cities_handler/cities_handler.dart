@@ -1,5 +1,6 @@
 import 'package:weather/models/cities/cities.dart';
 import 'package:weather/view_models/cities_handler/file_handler.dart';
+import 'package:weather/view_models/database_handler/city.dart';
 
 class CitiesHandler {
   Cities cities;
@@ -22,7 +23,12 @@ class CitiesHandler {
     }
   }
 
+  int compare(City first, City second) {
+    return first.city.compareTo(second.city);
+  }
+
   Future<void> save() async {
+    cities.cities.sort(compare);
     await fileHandler.write(cities.toJson());
   }
 }
