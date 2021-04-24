@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_icons/flutter_weather_icons.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:weather/models/api/hourly/data.dart';
 import 'package:weather/models/api/weather.dart';
+import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/converters/date_converters.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/api_handler/api_utils.dart';
@@ -10,8 +12,10 @@ import 'package:weather/views/utils/colors.dart' as colors;
 
 class LowerSection extends StatefulWidget {
   Weather weather;
+  Settings settings;
+  BuildContext context;
 
-  LowerSection(this.weather);
+  LowerSection(this.weather, this.settings, this.context);
 
   @override
   _LowerSectionState createState() => _LowerSectionState(weather);
@@ -231,6 +235,16 @@ class _LowerSectionState extends State<LowerSection> {
         data: weather.current.clouds,
         icon: WeatherIcons.wiCloud,
         title: "Clouds"));
+    // ------------------- Minutely ---------------//
+    if (widget.settings != null && widget.settings.showMinutely) {
+      var minutely = weather.minutely;
+      result.add(Column(
+        children: [
+          Text("Show", style: Theme.of(widget.context).textTheme.headline5),
+          Text("Minutely", style: Theme.of(widget.context).textTheme.headline5),
+        ],
+      ));
+    }
     return result;
   }
 

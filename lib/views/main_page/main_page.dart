@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/main_page_controller.dart';
@@ -19,8 +20,14 @@ class MainPage extends StatefulWidget {
   DatabaseHandler databaseHandler;
   CitiesHandler citiesHandler;
   HomeCity homeCity;
+  Settings settings;
 
-  MainPage(this.databaseHandler, this.citiesHandler, this.homeCity);
+  MainPage(
+    this.databaseHandler,
+    this.citiesHandler,
+    this.homeCity,
+    this.settings,
+  );
 
   @override
   _MainPageState createState() =>
@@ -75,12 +82,9 @@ class _MainPageState extends State<MainPage> {
         child: SafeArea(
           child: Container(
             height: device.height,
-            child: buildDrawer(
-              context,
-              stateUpdated: () {
-                setState(() {});
-              },
-            ),
+            child: buildDrawer(context, stateUpdated: () {
+              setState(() {});
+            }, settings: widget.settings),
           ),
         ),
       ),
@@ -94,7 +98,7 @@ class _MainPageState extends State<MainPage> {
             controller: controller.controller,
             onPageChanged: (value) => onPageChange(value),
             children: [
-              HomeView(_controller, widget.homeCity),
+              HomeView(_controller, widget.homeCity, widget.settings),
               SearchViewVertical(
                   _controller, databaseHandler, citiesHandler, widget.homeCity),
               CitiesView(_controller, citiesHandler, widget.homeCity),

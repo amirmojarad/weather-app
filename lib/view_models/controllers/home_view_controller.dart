@@ -4,6 +4,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/models/api/weather.dart';
+import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/api_handler/responses.dart' as API;
 import 'package:weather/views/city_view/city_view.dart';
@@ -14,15 +15,19 @@ class HomeViewController {
 
   HomeViewController({this.weather, this.scrollController});
 
-  Future<Widget> getData(
-      double lat, double lon, ScrollController controller) async {
+  Future<Widget> getData(double lat, double lon, ScrollController controller,
+      Settings settings) async {
     var connection = await Connectivity().checkConnectivity();
     if (connection == ConnectivityResult.mobile ||
         connection == ConnectivityResult.wifi) {
       var response = await API.makeOneCall(lat, lon);
       if (response.statusCode == 200) {
         weather = Weather.fromJson(jsonDecode(response.body));
-        return CityView(weather, controller);
+        return CityView(
+          weather,
+          controller,
+          settings: settings,
+        );
       } else
         throw Exception("Connection Failed");
     }

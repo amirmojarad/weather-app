@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:wave/config.dart';
 import 'package:weather/models/api/weather.dart';
+import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/controllers/home_view_controller.dart';
 import 'package:weather/views/city_view/widgets/lower_section.dart';
 import 'package:weather/views/city_view/widgets/upper_section.dart';
-import 'package:weather/views/city_view/widgets/wave_generator.dart';
 
 class CityView extends StatefulWidget {
   Weather weather;
   ScrollController _controller;
+  Settings settings;
 
-  CityView(this.weather, this._controller);
+  CityView(this.weather, this._controller, {this.settings});
 
   @override
   _CityViewState createState() => _CityViewState(this.weather);
@@ -57,22 +57,7 @@ class _CityViewState extends State<CityView> {
                 height: 0,
               ),
             ),
-            // buildCard(
-            //   config: CustomConfig(
-            //     gradients: [
-            //       [Color(0xff1D9AFF).withOpacity(0.9), Color(0xff1D9AFF).withOpacity(0.05)],
-            //       [Color(0xff83B7FF), Color(0xff83B7FF)],
-            //       [Color(0xff65CCCD), Color(0xff2C79E5)],
-            //       [Color(0xffF1FFFC), Color(0xffF1FFFC)]
-            //     ],
-            //     durations: [35000, 19440, 10800, 6000],
-            //     heightPercentages: [0.20, 0.23, 0.25, 0.30],
-            //     // blur: _blur,
-            //     gradientBegin: Alignment.bottomLeft,
-            //     gradientEnd: Alignment.topRight,
-            //   ),
-            // ),
-            LowerSection(controller.weather)
+            LowerSection(controller.weather, widget.settings, context)
           ],
         ),
       ),

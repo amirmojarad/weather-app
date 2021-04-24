@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
 
-Widget buildDrawer(BuildContext context, {Function stateUpdated}) {
+Widget buildDrawer(BuildContext context,
+    {Function stateUpdated, Settings settings}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
@@ -17,17 +19,12 @@ Widget buildDrawer(BuildContext context, {Function stateUpdated}) {
       SizedBox(
         height: 64,
       ),
-      buildDrawerItem(stateUpdated, "Dark Theme"),
+      buildChangeTheme(stateUpdated, "Dark Theme"),
       Padding(
         padding: const EdgeInsets.only(left: 32.0, right: 32.0),
         child: SizedBox(width: device.width, child: Divider()),
       ),
-      buildDrawerItem(stateUpdated, "Show Daily"),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-        child: SizedBox(width: device.width, child: Divider()),
-      ),
-      buildDrawerItem(stateUpdated, "Show Minutely"),
+      buildDrawerItem(stateUpdated, "Show Minutely", settings),
       Padding(
         padding: const EdgeInsets.only(left: 32.0, right: 32.0),
         child: SizedBox(width: device.width, child: Divider()),
@@ -87,9 +84,32 @@ Widget buildDrawer(BuildContext context, {Function stateUpdated}) {
   );
 }
 
-Padding buildDrawerItem(Function stateUpdated, String title) {
-  bool isSwitched = false;
+Padding buildDrawerItem(
+    Function stateUpdated, String title, Settings settings) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 8.0),
+    child: Row(
+      children: [
+        Text(title),
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Switch(
+            value: settings.showMinutely,
+            onChanged: (value) async {
+              settings.showMinutely = value;
+              await settings.saveChanges();
+              stateUpdated();
+            },
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
+Padding buildChangeTheme(Function stateUpdated, String title) {
+  bool isSwitched = false;
   return Padding(
     padding: const EdgeInsets.only(left: 8.0),
     child: Row(
