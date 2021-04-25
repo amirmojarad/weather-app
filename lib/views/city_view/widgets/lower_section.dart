@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_icons/flutter_weather_icons.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:weather/models/api/hourly/data.dart';
 import 'package:weather/models/api/weather.dart';
 import 'package:weather/models/settings/settings.dart';

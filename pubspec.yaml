@@ -19,11 +19,10 @@ dependencies:
   flutter_weather_icons: ^1.0.2
   sqflite: ^2.0.0+3
   url_launcher: ^6.0.3
-  wave: ^0.2.0
   shared_preferences: ^2.0.5
   path_provider: ^2.0.1
   connectivity: ^3.0.3
-#  flutter_launcher_icons: ^0.9.0
+  flutter_launcher_icons: ^0.9.0
 
   flutter_localizations:
     sdk: flutter
@@ -49,3 +48,4 @@ flutter:
     - lang/fa.json
     - assets/database/cities.sqlite
     - assets/images/No Internet Connection UI.jpg
+    - assets/images/background-light.svg

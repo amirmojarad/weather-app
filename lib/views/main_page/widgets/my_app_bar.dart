@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:weather/models/utils/device.dart';
 
 class MyAppBar extends StatelessWidget {
   Function function;
