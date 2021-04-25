@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather/models/settings/settings.dart';
+import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/controllers/home_view_controller.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
 
@@ -32,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
           if (snapshot.hasData) return snapshot.data;
           return Center(
             child: Container(
-              color: Colors.transparent,
+              color: Theme.of(context).backgroundColor,
               child: CircularProgressIndicator(
                 backgroundColor: Colors.transparent,
                 valueColor: AlwaysStoppedAnimation<Color>(Color(0xff10BF79)),

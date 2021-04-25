@@ -7,48 +7,47 @@ String getIcons(String iconURL) {
   return "http://openweathermap.org/img/wn/$iconURL@2x.png";
 }
 
-Icon getIcon(String iconURL, double size) {
-  IconData iconData;
+IconData getIcon(String iconURL) {
   switch (iconURL) {
     case "01d":
-      return Icon(WeatherIcons.wiDaySunny, size: size);
+      return WeatherIcons.wiDaySunny;
     case "01n":
-      return Icon(WeatherIcons.wiNightClear, size: size);
+      return WeatherIcons.wiNightClear;
     case "02n":
-      return Icon(WeatherIcons.wiNightCloudy, size: size);
+      return WeatherIcons.wiNightCloudy;
     case "02d":
-      return Icon(WeatherIcons.wiDayCloudy, size: size);
+      return WeatherIcons.wiDayCloudy;
     case "03n":
-      return Icon(WeatherIcons.wiNightCloudy, size: size);
+      return WeatherIcons.wiNightCloudy;
     case "03d":
-      return Icon(WeatherIcons.wiCloud, size: size);
+      return WeatherIcons.wiCloud;
     case "04n":
-      return Icon(WeatherIcons.wiCloud, size: size);
+      return WeatherIcons.wiCloud;
     case "04d":
-      return Icon(WeatherIcons.wiCloud, size: size);
+      return WeatherIcons.wiCloud;
     case "09d":
-      return Icon(WeatherIcons.wiRain, size: size);
+      return WeatherIcons.wiRain;
     case "09n":
-      return Icon(WeatherIcons.wiRain, size: size);
+      return WeatherIcons.wiRain;
     case "10d":
-      return Icon(WeatherIcons.wiDayRain, size: size);
+      return WeatherIcons.wiDayRain;
     case "10n":
-      return Icon(WeatherIcons.wiNightRain, size: size);
+      return WeatherIcons.wiNightRain;
 
     case "11d":
-      return Icon(WeatherIcons.wiDayThunderstorm, size: size);
+      return WeatherIcons.wiDayThunderstorm;
     case "11n":
-      return Icon(WeatherIcons.wiNightThunderstorm, size: size);
+      return WeatherIcons.wiNightThunderstorm;
     case "13d":
-      return Icon(WeatherIcons.wiSnow, size: size);
+      return WeatherIcons.wiSnow;
     case "13n":
-      return Icon(WeatherIcons.wiSnow, size: size);
+      return WeatherIcons.wiSnow;
     case "50d":
-      return Icon(WeatherIcons.wiFog, size: size);
+      return WeatherIcons.wiFog;
     case "50n":
-      return Icon(WeatherIcons.wiFog, size: size);
+      return WeatherIcons.wiFog;
     default:
-      return Icon(WeatherIcons.wiWindDirection);
+      return WeatherIcons.wiWindDirection;
   }
 }
 

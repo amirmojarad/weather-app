@@ -6,7 +6,12 @@ import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/l
 import 'main_page/main_page.dart';
 import 'package:weather/views/utils/fonts.dart' as fonts;
 import 'package:weather/views/utils/colors.dart' as colors;
-
+//TODO card fonts change
+//Todo colors
+//Todo hide bottom bar and disable functionality
+//TODO add main Colors
+//Todo delete About me section in driver
+//Todo better search function and showing result
 class WeatherApp extends StatefulWidget {
   @override
   _WeatherAppState createState() => _WeatherAppState();
@@ -23,14 +28,15 @@ class _WeatherAppState extends State<WeatherApp> {
       theme: ThemeData(
         backgroundColor: colors.kBackgroundColor,
         focusColor: colors.kFocus,
-        iconTheme: IconThemeData(color: colors.kIcon),
+        iconTheme: IconThemeData(color: colors.kIcon1),
         dividerColor: colors.kDivider,
         errorColor: colors.kError,
         accentIconTheme:
             IconThemeData(color: colors.kAccentIconColor, size: 20),
-        primaryIconTheme: IconThemeData(color: colors.kIcon, size: 24),
+        primaryIconTheme: IconThemeData(color: colors.kIcon1, size: 24),
         // accentColor: Color(0xff78D9EA),
         accentColor: colors.kAccentColor,
+        bottomAppBarColor: colors.kBottomBarColor,
         textTheme: TextTheme(
           headline1: fonts.headline1,
           headline2: fonts.headline2,
@@ -41,6 +47,9 @@ class _WeatherAppState extends State<WeatherApp> {
           button: fonts.button,
           bodyText1: fonts.bodyText1,
           bodyText2: fonts.bodyText2,
+          subtitle1: fonts.subtitle1,
+          subtitle2: fonts.subtitle2,
+          caption: fonts.caption,
         ),
       ),
       supportedLocales: [
@@ -70,7 +79,8 @@ class _WeatherAppState extends State<WeatherApp> {
                   snapshot.data['databaseHandler'],
                   snapshot.data['citiesHandler'],
                   snapshot.data['homeCity'],
-                  snapshot.data['settings'])
+                  snapshot.data['settings'],
+                )
               : Center(
                   child: welcomeProgress(MediaQuery.of(context).size.width,
                       MediaQuery.of(context).size.height));

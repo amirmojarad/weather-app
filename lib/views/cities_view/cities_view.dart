@@ -22,63 +22,61 @@ class CitiesView extends StatefulWidget {
 }
 
 class _CitiesViewState extends State<CitiesView> {
-  List<Widget> cardList = [];
-
-  void fillList() {
-    cardList =
-        List.generate(widget.citiesHandler.cities.cities.length, (index) {
-      var city = widget.citiesHandler.cities.cities[index];
-      return CitiesCard(
-        city: city,
-        setAsDefault: () async {
-          var response = await API.makeOneCall(city.lat, city.lon);
-          Weather weather = Weather.fromJson(await jsonDecode(response.body));
-          widget.homeCity.changeHome(weather);
-          await widget.homeCity.saveHome();
-          return true;
-        },
-        delete: () async {
-          bool isDeleted = false;
-          if (widget.citiesHandler.cities.cities.contains(city)) {
-            widget.citiesHandler.cities.cities.remove(city);
-            isDeleted = true;
-          }
-
-          if (isDeleted) await widget.citiesHandler.save();
-        },
-        setMainState: () async {
-          setState(() {});
-        },
-      );
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    fillList();
   }
 
   @override
   Widget build(BuildContext context) {
-    fillList();
     return SafeArea(
       child: SingleChildScrollView(
         controller: widget.controller,
         child: widget.citiesHandler.cities.cities.length != 0
             ? Padding(
-                padding: const EdgeInsets.only(top: 33.0),
+                padding: const EdgeInsets.only(top: 32.0),
                 child: Container(
+                  color: Theme.of(context).backgroundColor,
                   height: device.height,
                   child: Column(
-                    children: cardList,
+                    children: List.generate(
+                      widget.citiesHandler.cities.cities.length,
+                      (index) {
+                        var city = widget.citiesHandler.cities.cities[index];
+                        return CitiesCard(
+                          city: city,
+                          setAsDefault: () async {
+                            var response =
+                                await API.makeOneCall(city.lat, city.lon);
+                            Weather weather = Weather.fromJson(
+                                await jsonDecode(response.body));
+                            widget.homeCity.changeHome(weather);
+                            await widget.homeCity.saveHome();
+                            return true;
+                          },
+                          delete: () async {
+                            bool isDeleted = false;
+                            if (widget.citiesHandler.cities.cities
+                                .contains(city)) {
+                              widget.citiesHandler.cities.cities.remove(city);
+                              isDeleted = true;
+                            }
+
+                            if (isDeleted) await widget.citiesHandler.save();
+                          },
+                          setMainState: () async {
+                            setState(() {});
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               )
             : Center(
                 child: Text(
                   "List Is Empty",
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
               ),
       ),

@@ -56,14 +56,13 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                       width: device.width,
                       height: 48,
                       child: TextFormField(
-                        onChanged: (value){
+                        onChanged: (value) {
                           //TODO search result
-                          setState(() {
-
-                          });
+                          // setState(() {
+                          //
+                          // });
                         },
-                        onFieldSubmitted: (value) {
-                        },
+                        onFieldSubmitted: (value) {},
                         style: Theme.of(context).textTheme.headline5,
                         controller: controller.textController,
                         onEditingComplete: () {
@@ -77,6 +76,7 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                           });
                         },
                         decoration: InputDecoration(
+                            fillColor: Theme.of(context).accentColor,
                             contentPadding:
                                 EdgeInsets.only(top: 12, bottom: 12, left: 52),
                             suffixIcon: controller.textController.text.length !=
@@ -111,6 +111,8 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                               color: Theme.of(context).iconTheme.color,
                               onPressed: () {
                                 controller.onSearchPressed();
+                                FocusScope.of(context)
+                                    .requestFocus(FocusNode());
                               },
                             ),
                             hintText:

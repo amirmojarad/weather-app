@@ -29,6 +29,8 @@ class _LowerSectionState extends State<LowerSection> {
     controller.weather = weather;
   }
 
+  IconThemeData iconTheme = IconThemeData(color: colors.kIcon2, size: 25);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,6 +63,7 @@ class _LowerSectionState extends State<LowerSection> {
         ),
         SizedBox(
             child: Divider(
+              height: 0,
               color: Colors.black,
               thickness: 1,
             ),
@@ -126,25 +129,26 @@ class _LowerSectionState extends State<LowerSection> {
       child: Column(
         children: [
           Text(
-              (data.dt as DateTime).day != DateTime.now().day
-                  ? "${(data.dt as DateTime).day} ${getMonth((data.dt as DateTime).month)}"
-                  : "Today",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+            (data.dt as DateTime).day != DateTime.now().day
+                ? "${(data.dt as DateTime).day} ${getMonth((data.dt as DateTime).month)}"
+                : "Today",
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
           Padding(
               padding: const EdgeInsets.only(bottom: 20, top: 5),
-              child: getIcon(data.weather.dayWeather[0].icon, 25)),
+              child: Icon(getIcon(data.weather.dayWeather[0].icon), size: 25)),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "${getAverage(data.temp.min, data.temp.max)}",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 1.0),
                 child: Text(
                   "o",
-                  style: TextStyle(fontSize: 12),
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               )
             ],
@@ -153,10 +157,7 @@ class _LowerSectionState extends State<LowerSection> {
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
               "${data.weather.dayWeather[0].description}",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
         ],
@@ -170,35 +171,40 @@ class _LowerSectionState extends State<LowerSection> {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
               (data.dt as DateTime).hour != DateTime.now().hour
                   ? "${(data.dt as DateTime).hour}:00"
                   : "Now",
-              style: Theme.of(context).textTheme.bodyText2),
+              style: Theme.of(context).textTheme.bodyText1),
           Padding(
-              padding: const EdgeInsets.only(bottom: 20, top: 5),
-              child: getIcon(data.weather.icon, 25)),
+              padding: const EdgeInsets.only(bottom: 8, top: 0),
+              child: Icon(
+                getIcon(data.weather.icon),
+                size: 25,
+              )),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "${data.temp.toInt()}",
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.subtitle1,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 1.0),
                 child: Text(
                   "o",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12),
                 ),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 5.0),
             child: Text("${data.weather.description}",
-                style: Theme.of(context).textTheme.bodyText2),
+                style: Theme.of(context).textTheme.bodyText1),
           ),
         ],
       ),
@@ -265,8 +271,7 @@ class _LowerSectionState extends State<LowerSection> {
       padding: const EdgeInsets.only(left: 25.0),
       child: Column(
         children: [
-          Text(title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+          Text(title, style: Theme.of(context).textTheme.bodyText1),
           Padding(
             padding: const EdgeInsets.only(bottom: 20, top: 5),
             child: Icon(icon),
@@ -275,10 +280,7 @@ class _LowerSectionState extends State<LowerSection> {
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
               data.toString(),
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
         ],

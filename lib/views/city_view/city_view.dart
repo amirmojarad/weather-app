@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:line_icons/line_icon.dart';
 import 'package:weather/models/api/weather.dart';
 import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
@@ -45,19 +48,30 @@ class _CityViewState extends State<CityView> {
     return SafeArea(
       child: SingleChildScrollView(
         controller: widget._controller,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
+          alignment: Alignment.topCenter,
           children: [
-            buildCurrentData(context, controller.weather),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: SizedBox(
-                width: device.width,
-                child: Divider(),
-                height: 0,
+            SvgPicture.asset(
+              'assets/images/background-light.svg',
+              alignment: Alignment.center,
+              fit: BoxFit.fill,
+              width: device.width,
+              height: device.height,
+            ),
+            Container(
+              height: device.height,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  buildCurrentData(context, controller.weather),
+                  Padding(
+                    padding: EdgeInsets.only(top: device.height/6),
+                    child: LowerSection(
+                        controller.weather, widget.settings, context),
+                  )
+                ],
               ),
             ),
-            LowerSection(controller.weather, widget.settings, context)
           ],
         ),
       ),

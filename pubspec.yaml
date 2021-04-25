@@ -23,6 +23,7 @@ dependencies:
   path_provider: ^2.0.1
   connectivity: ^3.0.3
   flutter_launcher_icons: ^0.9.0
+  flutter_svg: ^0.22.0
 
   flutter_localizations:
     sdk: flutter
