@@ -21,6 +21,13 @@ Cooming Soon...😉
 * Mobile App Developement
 * MVVM + Clean Architecture
 
+## 📷 Screenshot
+![main](https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png)
+
+![search](https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png)
+
+![cities](https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png)
+
 ## 🔧 Credits
 
 * API : [Open Weather Map API](https://openweathermap.org/api)
