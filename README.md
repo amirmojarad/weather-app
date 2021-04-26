@@ -25,7 +25,7 @@ Cooming Soon...😉
 <table>
   <tr>
     <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/home.png" width="500px" height = "700px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png" width="500px" height = "700px">
     </td>
     
    <td>
