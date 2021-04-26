@@ -56,7 +56,7 @@ class _CityViewState extends State<CityView> {
               child: Container(
                 color: Theme.of(context).accentColor,
                 width: device.width,
-                height: device.height / 1.7,
+                height: device.height / 1.9,
                 child: buildCurrentData(context, controller.weather),
               ),
             ),

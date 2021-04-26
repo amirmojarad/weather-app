@@ -12,10 +12,6 @@ Widget buildDrawer(BuildContext context,
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text(
-        "Weather App",
-        style: Theme.of(context).textTheme.headline3,
-      ),
       SizedBox(
         height: 64,
       ),
@@ -24,7 +20,7 @@ Widget buildDrawer(BuildContext context,
         padding: const EdgeInsets.only(left: 32.0, right: 32.0),
         child: SizedBox(width: device.width, child: Divider()),
       ),
-      buildDrawerItem(stateUpdated, "Show Minutely", settings),
+      // buildDrawerItem(stateUpdated, "Show Minutely", settings),
       Padding(
         padding: const EdgeInsets.only(left: 32.0, right: 32.0),
         child: SizedBox(width: device.width, child: Divider()),
@@ -37,7 +33,6 @@ Widget buildDrawer(BuildContext context,
           width: device.width,
         ),
       ),
-      Text("About Me"),
       Text(
         "Made with 💙 by amir mojarad",
         style: Theme.of(context).textTheme.headline6,
@@ -114,15 +109,22 @@ Padding buildChangeTheme(Function stateUpdated, String title) {
     padding: const EdgeInsets.only(left: 8.0),
     child: Row(
       children: [
-        Text(title),
+        Text(
+          title,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            decoration: TextDecoration.lineThrough,
+          ),
+        ),
         Spacer(),
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: Switch(
             value: isSwitched,
             onChanged: (value) {
-              isSwitched = value;
-              stateUpdated();
+              //TODO add dark theme
+              // isSwitched = value;
+              // stateUpdated();
             },
           ),
         ),

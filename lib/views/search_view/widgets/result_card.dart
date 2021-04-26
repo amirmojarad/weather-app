@@ -74,7 +74,7 @@ class _ResultCardState extends State<ResultCard> {
                         SizedBox(height: 10),
                         Text(
                           controller.city.country,
-                          style: Theme.of(context).textTheme.headline5,
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ],
                     ),

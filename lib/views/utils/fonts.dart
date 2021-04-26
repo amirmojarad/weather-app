@@ -51,14 +51,14 @@ const TextStyle button = TextStyle(
 const TextStyle bodyText1 = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 16,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     color: Color(0xff02111F),
     letterSpacing: 0.5);
 
 const TextStyle bodyText2 = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 18,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
     color: Color(0xff02111F),
     letterSpacing: 0.5);
 

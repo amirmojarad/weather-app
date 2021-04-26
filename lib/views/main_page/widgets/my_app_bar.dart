@@ -10,7 +10,7 @@ class MyAppBar extends StatelessWidget {
   AppBar build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).backgroundColor,
-      title: Text("Weather App", style: Theme.of(context).textTheme.headline5),
+      title: Text("Weather", style: Theme.of(context).textTheme.headline5),
     );
   }
 
