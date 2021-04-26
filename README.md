@@ -22,9 +22,19 @@ Cooming Soon...😉
 * MVVM + Clean Architecture
 
 ## 📷 Screenshot
-<img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png" width="300" height="600">
-<img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png" width="300" height="600">
-<img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="300" height="600">
+<table>
+  <tr>
+    <td>
+  <img width="500px" src="https://github.com/amirmojarad/weather-app/tree/main/screenshots/home.png">
+    </td>
+    <td>
+  <img width="https://github.com/amirmojarad/weather-app/tree/main/screenshots/search">
+    </td>
+    <td>
+  <img width="https://github.com/amirmojarad/weather-app/tree/main/screenshots/cities">
+    </td>
+  </tr>
+</table>
 
 
 ## 🔧 Credits
