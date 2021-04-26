@@ -25,14 +25,14 @@ Cooming Soon...😉
 <table>
   <tr>
     <td>
-  <img src="https://github.com/amirmojarad/weather-app/tree/main/screenshots/home.png" width="500px" height = "700px">
-    </td>
-    <td>
-  <img "https://github.com/amirmojarad/weather-app/tree/main/screenshots/search.png" width="500px" height = "700px">
-    </td>
-    <td>
-  <img "https://github.com/amirmojarad/weather-app/tree/main/screenshots/cities.png" width="500px" height = "700px">
-    </td>
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="500px" height = "700px">
+   </td>
+   <td>
+  <img "https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="500px" height = "700px">
+   </td>
+   <td>
+  <img "https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="500px" height = "700px">
+   </td>
   </tr>
 </table>
 
