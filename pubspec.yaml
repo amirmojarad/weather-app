@@ -47,11 +47,19 @@ flutter:
     - family:  MyFlutterApp
       fonts:
         - asset: assets/fonts/fonts/MyFlutterApp.ttf
-    - family: Poppins
+
+    - family: PoppinsRegular
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+
+    - family: PoppinsSemiBold
+      fonts:
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+
+    - family: PoppinsMedium
       fonts:
         - asset: assets/fonts/Poppins-Medium.ttf
-        - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-SemiBold.ttf
+
   assets:
     - lang/en.json
     - lang/fa.json

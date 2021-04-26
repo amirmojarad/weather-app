@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icon.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 
@@ -69,19 +70,22 @@ Container buildBottomSheet(
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-                  child: SizedBox(
-                    width: device.width,
-                    child: Divider(),
-                    height: 3,
+                  child: Center(
+                    child: SizedBox(
+                      child: Divider(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                      width: device.width,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: GestureDetector(
-                    onTap: () async {
-                      await delete();
-                      Navigator.pop(context);
-                    },
+                GestureDetector(
+                  onTap: () async {
+                    await delete();
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
                     child: Text(
                       "Delete",
                       style: TextStyle(

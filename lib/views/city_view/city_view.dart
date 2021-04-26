@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:weather/models/api/weather.dart';
 import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
@@ -57,7 +54,10 @@ class _CityViewState extends State<CityView> {
                 color: Theme.of(context).accentColor,
                 width: device.width,
                 height: device.height / 1.9,
-                child: buildCurrentData(context, controller.weather),
+                child: Padding(
+                  padding: EdgeInsets.only(top: device.height / 50),
+                  child: buildCurrentData(context, controller.weather),
+                ),
               ),
             ),
             Container(

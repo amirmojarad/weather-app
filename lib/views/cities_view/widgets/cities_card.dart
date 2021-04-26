@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:weather/models/utils/device.dart';
+import 'package:weather/view_models/controllers/cities_controller.dart';
 import 'package:weather/view_models/database_handler/city.dart';
+import 'package:weather/view_models/home_city/home_city.dart';
+import 'package:weather/views/city_view/resultCity.dart';
 
 import 'action_bottom_sheet.dart';
 
 class CitiesCard extends StatelessWidget {
+  HomeCity homeCity;
   City city;
   Function setAsDefault;
   Function delete;
   Function setMainState;
   BorderRadius borderRadius = BorderRadius.all(Radius.circular(12));
+  CitiesController controller;
 
-  CitiesCard({this.city, this.setAsDefault, this.delete, this.setMainState});
+  CitiesCard(
+      {this.city,
+      this.setAsDefault,
+      this.delete,
+      this.setMainState,
+      this.homeCity}) {
+    controller = CitiesController(city);
+  }
+
+  bool selected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +44,28 @@ class CitiesCard extends StatelessWidget {
               borderRadius: borderRadius,
               color: Colors.transparent,
               child: InkWell(
-                splashColor: Color(0xffDAF7FF),
                 borderRadius: borderRadius,
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FutureBuilder(
+                        future: controller.getData(),
+                        builder: (context, snapshot) => snapshot.hasData
+                            ? ResultCity(snapshot.data['widget'], () async {
+                                homeCity.changeHome(snapshot.data['weather']);
+                                await homeCity.saveHome();
+                              })
+                            : Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                color: Colors.white,
+                                child:
+                                    Center(child: CircularProgressIndicator())),
+                      ),
+                    ),
+                  );
+                },
                 child: AspectRatio(
                   aspectRatio: 1.1,
                   child: Padding(

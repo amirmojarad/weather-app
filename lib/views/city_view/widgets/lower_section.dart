@@ -69,7 +69,7 @@ class _LowerSectionState extends State<LowerSection> {
             ),
             width: device.width),
         Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
+          padding: const EdgeInsets.only(bottom: 20.0, top: 10),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(

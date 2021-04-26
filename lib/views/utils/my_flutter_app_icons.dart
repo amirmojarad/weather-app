@@ -1,3 +1,4 @@
+
 import 'package:flutter/widgets.dart';
 
 class MyFlutterApp {
@@ -8,4 +9,5 @@ class MyFlutterApp {
 
   static const IconData combined_shape_1 = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData like = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

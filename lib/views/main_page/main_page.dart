@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:weather/models/settings/settings.dart';
 import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
@@ -9,9 +8,8 @@ import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
 import 'package:weather/views/cities_view/cities_view.dart';
 import 'package:weather/views/city_view/home_view.dart';
-import 'package:weather/views/my_flutter_app_icons.dart';
 import 'package:weather/views/search_view/search_view_vertical.dart';
-
+import 'package:weather/views/utils/my_flutter_app_icons.dart';
 import 'widgets/my_app_bar.dart';
 import 'widgets/my_bottom_navigation_bar.dart';
 import 'widgets/my_drawer.dart';
@@ -113,7 +111,7 @@ class _MainPageState extends State<MainPage> {
                 currentIndex: controller.index,
                 controller: controller.controller,
                 items: [
-                  LineIcons.home,
+                  MyFlutterApp.home,
                   MyFlutterApp.combined_shape_1,
                   MyFlutterApp.like,
                 ],

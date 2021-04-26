@@ -5,7 +5,7 @@ import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_view_controller.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
-import 'package:weather/views/my_flutter_app_icons.dart';
+import 'package:weather/views/utils/my_flutter_app_icons.dart';
 
 class SearchViewVertical extends StatefulWidget {
   ScrollController _controller;

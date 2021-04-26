@@ -44,6 +44,7 @@ class _CitiesViewState extends State<CitiesView> {
                       (index) {
                         var city = widget.citiesHandler.cities.cities[index];
                         return CitiesCard(
+                          homeCity: widget.homeCity,
                           city: city,
                           setAsDefault: () async {
                             var response =
