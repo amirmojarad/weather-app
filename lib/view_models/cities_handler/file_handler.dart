@@ -18,7 +18,6 @@ class FileHandler {
     try {
       await _fetchFile();
       String contents = await file.readAsString();
-      print(contents);
       if (contents.isEmpty || contents == "") throw 'file is empty';
       return await jsonDecode(contents);
     } catch (e) {

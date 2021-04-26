@@ -18,20 +18,17 @@ Widget buildCurrentData(BuildContext context, Weather weather) {
         Text(getCityName(), style: Theme.of(context).textTheme.headline4),
         Text(weather.current.weather.description,
             style: Theme.of(context).textTheme.subtitle2),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(weather.current.temp.toInt().toString(),
-                  style: Theme.of(context).textTheme.headline1),
-              Text(
-                "o",
-                style: TextStyle(fontSize: 36, color: colors.kIcon2),
-              )
-            ],
-          ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(weather.current.temp.toInt().toString(),
+                style: Theme.of(context).textTheme.headline1),
+            Text(
+              "o",
+              style: TextStyle(fontSize: 36, color: colors.kIcon2),
+            )
+          ],
         ),
         Icon(getIcon(weather.current.weather.icon),
             size: 80, color: colors.kIcon2),

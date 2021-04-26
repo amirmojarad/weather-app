@@ -47,34 +47,52 @@ class _CityViewState extends State<CityView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        controller: widget._controller,
-        child: Stack(
-          alignment: Alignment.topCenter,
+        controller: controller.scrollController,
+        child: Column(
+          // alignment: Alignment.bottomCenter,
           children: [
-            SvgPicture.asset(
-              'assets/images/background-light.svg',
-              alignment: Alignment.center,
-              fit: BoxFit.fill,
-              width: device.width,
-              height: device.height,
+            ClipPath(
+              clipper: ClipPathClass(),
+              child: Container(
+                color: Theme.of(context).accentColor,
+                width: device.width,
+                height: device.height / 1.7,
+                child: buildCurrentData(context, controller.weather),
+              ),
             ),
             Container(
-              height: device.height,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildCurrentData(context, controller.weather),
-                  Padding(
-                    padding: EdgeInsets.only(top: device.height/6),
-                    child: LowerSection(
-                        controller.weather, widget.settings, context),
-                  )
-                ],
-              ),
+              color: Theme.of(context).backgroundColor,
+              child: LowerSection(controller.weather, widget.settings, context),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class ClipPathClass extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0.0, size.height - 30);
+
+    var firstControlPoint = Offset(size.width / 4, size.height);
+    var firstPoint = Offset(size.width / 2, size.height);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstPoint.dx, firstPoint.dy);
+
+    var secondControlPoint = Offset(size.width - (size.width / 4), size.height);
+    var secondPoint = Offset(size.width, size.height - 30);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondPoint.dx, secondPoint.dy);
+
+    path.lineTo(size.width, 0.0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

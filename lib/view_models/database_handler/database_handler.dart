@@ -18,7 +18,7 @@ class DatabaseHandler {
     await File(_path).writeAsBytes(bytes);
   }
 
-  void generatePath() async {
+  Future<void> generatePath() async {
     _dbDir = await getDatabasesPath();
     _path = join(_dbDir, "cities.sqlite");
     await deleteDatabase(_path);

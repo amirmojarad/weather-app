@@ -21,6 +21,7 @@ class WeatherAppController {
       await homeCity.loadHome();
       await settings.loadChanges();
     } catch (e) {
+      print("ASD");
       print(e);
     }
     print(homeCity.weather.timezone);

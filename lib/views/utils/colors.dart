@@ -11,6 +11,6 @@ const Color kIcon2   = Color(0xffFAFAFA);
 const Color kDivider = Color(0xffdddddd);
 const Color kError = Color(0xffCA0025);
 const Color kDot = Color(0xff324343);
-const Color kAccentColor = Color(0xff0A87B1);
+const Color kAccentColor = Color(0xff316DDF);
 const Color kBlack = Color(0xff2F374E);
 
