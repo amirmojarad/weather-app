@@ -44,6 +44,9 @@ Cooming Soon...😉
 
 * API : [Open Weather Map API](https://openweathermap.org/api)
 * UI Design : [Weather App by Phtranh](https://www.behance.net/gallery/90366995/Weather-App?tracking_source=search_projects_recommended%7Cweather%20forecast%20app)
+* Cities Database : Offline data from  [Cities500](http://download.geonames.org/export/dump/cities500.zip)
+* Icons : Iconly, [Flutter Weather Icon](https://pub.dev/packages/weather_icons)
+* and Special Thanks To Roya Farokhzade!
 
 ## 📝 Todo
 ```
