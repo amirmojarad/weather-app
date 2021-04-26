@@ -33,7 +33,6 @@ Cooming Soon...😉
     <td>
   <img width="https://github.com/amirmojarad/weather-app/tree/main/screenshots/cities">
     </td>
-  </tr>
 </table>
 
 
