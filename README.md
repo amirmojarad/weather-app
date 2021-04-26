@@ -22,7 +22,7 @@ Cooming Soon...😉
 * MVVM + Clean Architecture
 
 ## 📷 Screenshot
-![main](https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png)
+![main](https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png width=100, height=300)
 
 ![search](https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png)
 
