@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:weather/view_models/controllers/weather_app_controller.dart';
@@ -6,6 +7,7 @@ import 'file:///D:/applications/AndroidProjects/weather_app/weather/lib/models/l
 import 'main_page/main_page.dart';
 import 'package:weather/views/utils/fonts.dart' as fonts;
 import 'package:weather/views/utils/colors.dart' as colors;
+
 //TODO card fonts change
 //Todo colors
 //Todo hide bottom bar and disable functionality
@@ -74,16 +76,38 @@ class _WeatherAppState extends State<WeatherApp> {
       home: FutureBuilder(
         future: controller.generateInformation(),
         builder: (context, snapshot) {
-          return snapshot.hasData
-              ? MainPage(
-                  snapshot.data['databaseHandler'],
-                  snapshot.data['citiesHandler'],
-                  snapshot.data['homeCity'],
-                  snapshot.data['settings'],
-                )
-              : Center(
-                  child: welcomeProgress(MediaQuery.of(context).size.width,
-                      MediaQuery.of(context).size.height));
+          if (snapshot.hasData)
+            return MainPage(
+              snapshot.data['databaseHandler'],
+              snapshot.data['citiesHandler'],
+              snapshot.data['homeCity'],
+              snapshot.data['settings'],
+            );
+          else {
+            return Scaffold(
+              body: Container(
+                color: Theme.of(context).backgroundColor,
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ShowUp(
+                        child: Center(
+                            child: Image.asset('assets/launcher/icon.png',
+                                width: 200, height: 200)),
+                        delay: 1,
+                      ),
+                      ShowUp(
+                        child: Center(child: Text("Welcome To Weather App!")),
+                        delay: 3,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
         },
       ),
     );

@@ -19,7 +19,6 @@ class CitiesHandler {
         cities = Cities.fromJson(json);
     } catch (e) {
       cities = Cities();
-      print(e);
     }
   }
 

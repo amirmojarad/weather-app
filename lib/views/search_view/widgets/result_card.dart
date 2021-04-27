@@ -4,27 +4,21 @@ import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/controllers/search_result_card_controller.dart';
 import 'package:weather/view_models/database_handler/city.dart';
 import 'package:weather/view_models/home_city/home_city.dart';
+import 'package:weather/views/city_view/resultCity.dart';
 import 'package:weather/views/utils/my_flutter_app_icons.dart';
-class ResultCard extends StatefulWidget {
+
+class ResultCard extends StatelessWidget {
   City city;
   CitiesHandler citiesHandler;
   ScrollController _controller;
   HomeCity homeCity;
-
-  ResultCard(this.city, this._controller, this.citiesHandler, this.homeCity);
-
-  @override
-  _ResultCardState createState() => _ResultCardState(city, this._controller);
-}
-
-class _ResultCardState extends State<ResultCard> {
   SearchResultCardController controller;
-
+  Function setState;
   bool selected = false;
 
-  _ResultCardState(City city, ScrollController scrollController) {
-    controller =
-        SearchResultCardController(controller: scrollController, city: city);
+  ResultCard(this.city, this.citiesHandler, this.homeCity, this.setState) {
+    controller = SearchResultCardController();
+    controller.city = city;
   }
 
   @override
@@ -48,7 +42,10 @@ class _ResultCardState extends State<ResultCard> {
                     builder: (context) => FutureBuilder(
                       future: controller.getData(),
                       builder: (context, snapshot) => snapshot.hasData
-                          ? buildResultCity(snapshot, context)
+                          ? ResultCity(snapshot.data, () async {
+                              homeCity.changeHome(snapshot.data['weather']);
+                              await homeCity.saveHome();
+                            })
                           : Container(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height,
@@ -84,10 +81,9 @@ class _ResultCardState extends State<ResultCard> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(30),
                           onTap: () async {
-                            setState(() {
-                              controller.addToFavorites(widget.citiesHandler);
-                            });
-                            await widget.citiesHandler.save();
+                            controller.addToFavorites(citiesHandler);
+                            await citiesHandler.save();
+                            setState();
                           },
                           child: controller.likeTapped
                               ? Icon(MyFlutterApp.like,
@@ -112,36 +108,28 @@ class _ResultCardState extends State<ResultCard> {
       ),
     );
   }
-
-  Scaffold buildResultCity(AsyncSnapshot snapshot, BuildContext context) {
-    return Scaffold(
-      body: snapshot.data['widget'],
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              child:
-                  Icon(selected ? Icons.home : Icons.home_outlined, size: 30),
-              onTap: () async {
-                setState(() {
-                  selected = !selected;
-                  widget.homeCity.changeHome(snapshot.data['weather']);
-                });
-                await widget.homeCity.saveHome();
-                final snackBar = SnackBar(content: Text('Home Changed!'));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-            ),
-          )
-        ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
 }
+
+// class ResultCard extends StatefulWidget {
+//
+//
+//   ResultCard(this.city, this._controller, this.citiesHandler, this.homeCity);
+//
+//   @override
+//   _ResultCardState createState() => _ResultCardState(city, this._controller);
+// }
+//
+// class _ResultCardState extends State<ResultCard> {
+//
+//
+//   _ResultCardState(City city, ScrollController scrollController) {
+//     controller =
+//         SearchResultCardController(controller: scrollController, city: city);
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+//
+// }

@@ -17,8 +17,6 @@ void main() {
       cities = Cities.fromJson(await fileHandler.read());
       expect(cities.cities.length, equals(1));
       expect(cities.cities[0].id, equals("1"));
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   });
 }

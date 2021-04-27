@@ -23,6 +23,11 @@ class City {
       "lon": this.lon
     };
   }
+
+  @override
+  String toString() {
+    return 'City{city: $city, country: $country}';
+  }
 }
 
 City _$CityFromJson(Map<String, dynamic> json) {

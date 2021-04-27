@@ -23,27 +23,26 @@ class SearchViewController {
       this.citiesHandler,
       this.homeCity});
 
-  List<Widget> fillCards() {
+  List<Widget> fillCards(Function setState) {
+    if (result.isEmpty) return [];
     int newSize = result.length > 10 ? size : result.length;
     cityCards = List.generate(newSize, (index) {
-      return ResultCard(
-        result[index],
-        controller,
-        citiesHandler,
-        this.homeCity
-      );
+      return ResultCard(result[index], citiesHandler, homeCity, setState);
     });
     return cityCards;
   }
 
-  void tapOnMore() {
+  void tapOnMore(Function setState) {
     size = size + 10;
-    fillCards();
+    fillCards(setState);
   }
 
   void onSearchPressed() {
     if (textController.text.isNotEmpty)
       result = databaseHandler.query(textController.text);
+    else
+      cancelSearch();
+    if (textController.text.isEmpty) return;
     if (result.isEmpty) clearTapped = false;
   }
 

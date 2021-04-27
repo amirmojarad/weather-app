@@ -53,7 +53,9 @@ class _CityViewState extends State<CityView> {
               child: Container(
                 color: Theme.of(context).accentColor,
                 width: device.width,
-                height: device.height / 1.9,
+                height: device.height <= 600
+                    ? device.height / 1.4
+                    : device.height / 1.9,
                 child: Padding(
                   padding: EdgeInsets.only(top: device.height / 50),
                   child: buildCurrentData(context, controller.weather),
@@ -64,6 +66,11 @@ class _CityViewState extends State<CityView> {
               color: Theme.of(context).backgroundColor,
               child: LowerSection(controller.weather, widget.settings, context),
             ),
+            device.height <= 600
+                ? SizedBox(
+                    height: 30,
+                  )
+                : Container()
           ],
         ),
       ),

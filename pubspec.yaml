@@ -65,4 +65,4 @@ flutter:
     - lang/fa.json
     - assets/database/cities.sqlite
     - assets/images/No Internet Connection UI.jpg
-    - assets/images/background-light.svg
+    - assets/launcher/icon.png

@@ -43,20 +43,15 @@ class DatabaseHandler {
       });
       cities.removeLast();
     } catch (_) {
-      print("Error" + _.toString());
+
     }
   }
 
   List<City> query(String city) {
     List<City> result = [];
+    if (city.isEmpty) return [];
     cities.forEach((element) {
-      if (element.city.toLowerCase().startsWith(city.toLowerCase()) &&
-          city.length <= 3)
-        result.add(element);
-      else if (element.city.contains(city))
-        result.add(element);
-      else if (element.city.toLowerCase() == city.toLowerCase())
-        result.add(element);
+      if (element.city.toLowerCase().startsWith(city)) result.add(element);
     });
     return result;
   }

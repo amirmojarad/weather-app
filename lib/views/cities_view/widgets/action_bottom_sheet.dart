@@ -29,17 +29,21 @@ Container buildBottomSheet(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(city.city, style: Theme.of(context).textTheme.bodyText1),
+                Padding(
+                  padding: EdgeInsets.only(top: 16.0),
+                  child: Text(city.city,
+                      style: Theme.of(context).textTheme.bodyText2),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 2.0),
                   child: Text(city.country,
-                      style: Theme.of(context).textTheme.headline5),
+                      style: Theme.of(context).textTheme.headline6),
                 )
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: SizedBox(width: device.width, child: Divider()),
           ),
           Padding(
@@ -66,36 +70,6 @@ Container buildBottomSheet(
                   child: Text(
                     "Set As Default",
                     style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-                  child: Center(
-                    child: SizedBox(
-                      child: Divider(
-                        color: Theme.of(context).dividerColor,
-                      ),
-                      width: device.width,
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    await delete();
-                    Navigator.pop(context);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
-                    child: Text(
-                      "Delete",
-                      style: TextStyle(
-                        color: Theme.of(context).errorColor,
-                        fontFamily:
-                            Theme.of(context).textTheme.headline5.fontFamily,
-                        fontWeight:
-                            Theme.of(context).textTheme.headline5.fontWeight,
-                      ),
-                    ),
                   ),
                 ),
               ],

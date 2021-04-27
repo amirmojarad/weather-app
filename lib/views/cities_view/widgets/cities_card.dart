@@ -30,7 +30,6 @@ class CitiesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      key: UniqueKey(),
       padding: const EdgeInsets.only(left: 16.0, right: 16),
       child: Column(
         children: [

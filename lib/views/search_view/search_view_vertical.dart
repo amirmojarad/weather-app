@@ -57,12 +57,16 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                       height: 48,
                       child: TextFormField(
                         onChanged: (value) {
-                          //TODO search result
-                          // setState(() {
-                          //
-                          // });
+                          setState(() {
+                            controller.onSearchPressed();
+                          });
                         },
-                        onFieldSubmitted: (value) {},
+                        onFieldSubmitted: (value) {
+                          setState(() {
+                            controller.onSearchPressed();
+                            FocusScope.of(context).requestFocus(FocusNode());
+                          });
+                        },
                         style: Theme.of(context).textTheme.headline5,
                         controller: controller.textController,
                         onEditingComplete: () {
@@ -136,7 +140,9 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: controller.fillCards(),
+                                  children: controller.fillCards(() {
+                                    setState(() {});
+                                  }),
                                 ),
                                 controller.size > 10
                                     ? GestureDetector(
@@ -144,7 +150,9 @@ class _SearchViewVerticalState extends State<SearchViewVertical> {
                                         onTap: () {
                                           setState(
                                             () {
-                                              controller.tapOnMore();
+                                              controller.tapOnMore(() {
+                                                setState(() {});
+                                              });
                                             },
                                           );
                                         },

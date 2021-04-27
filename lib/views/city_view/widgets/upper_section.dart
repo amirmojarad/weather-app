@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_icons/flutter_weather_icons.dart';
 import 'package:weather/models/api/weather.dart';
+import 'package:weather/models/utils/device.dart';
 import 'package:weather/view_models/api_handler/api_utils.dart';
 import 'package:weather/views/utils/colors.dart' as colors;
 
@@ -13,51 +14,56 @@ Widget buildCurrentData(BuildContext context, Weather weather) {
 
   return Container(
     color: Colors.transparent,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(getCityName(), style: Theme.of(context).textTheme.headline4),
-        Text(weather.current.weather.description,
-            style: Theme.of(context).textTheme.subtitle2),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(weather.current.temp.toInt().toString(),
-                  style: Theme.of(context).textTheme.headline1),
-              Text(
-                "o",
-                style: TextStyle(fontSize: 36, color: colors.kIcon2),
-              )
-            ],
-          ),
+    child: SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.only(bottom: device.height / 25),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(getCityName(), style: Theme.of(context).textTheme.headline4),
+            Text(weather.current.weather.description,
+                style: Theme.of(context).textTheme.subtitle2),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(weather.current.temp.toInt().toString(),
+                      style: Theme.of(context).textTheme.headline1),
+                  Text(
+                    "o",
+                    style: TextStyle(fontSize: 36, color: colors.kIcon2),
+                  )
+                ],
+              ),
+            ),
+            Icon(getIcon(weather.current.weather.icon),
+                size: 80, color: colors.kIcon2),
+            Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: buildTag(context, "Humidity",
+                        WeatherIcons.wiHumidity, weather.current.humidity),
+                  ),
+                  Expanded(
+                    child: buildTag(context, "Speed", WeatherIcons.wiStrongWind,
+                        weather.current.windSpeed),
+                  ),
+                  Expanded(
+                    child: buildTag(context, "Pressure",
+                        WeatherIcons.wiBarometer, weather.current.pressure),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
-        Icon(getIcon(weather.current.weather.icon),
-            size: 80, color: colors.kIcon2),
-        Padding(
-          padding: const EdgeInsets.only(top: 24.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: buildTag(context, "Humidity", WeatherIcons.wiHumidity,
-                    weather.current.humidity),
-              ),
-              Expanded(
-                child: buildTag(context, "Speed", WeatherIcons.wiStrongWind,
-                    weather.current.windSpeed),
-              ),
-              Expanded(
-                child: buildTag(context, "Pressure", WeatherIcons.wiBarometer,
-                    weather.current.pressure),
-              ),
-            ],
-          ),
-        )
-      ],
+      ),
     ),
   );
 }

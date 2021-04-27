@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:weather/models/settings/settings.dart';
 import 'package:weather/view_models/cities_handler/cities_handler.dart';
 import 'package:weather/view_models/database_handler/database_handler.dart';
@@ -14,22 +15,31 @@ class WeatherAppController {
   }
 
   Future<Map<String, dynamic>> generateInformation() async {
-    try {
-      await databaseHandler.generatePath();
-      await databaseHandler.generateCities();
-      await cities.load();
-      await homeCity.loadHome();
-      await settings.loadChanges();
-    } catch (e) {
-      print("ASD");
-      print(e);
+    await databaseHandler.generatePath();
+    await databaseHandler.generateCities();
+    await cities.load();
+    //TODO cache home city
+    var connection = await Connectivity().checkConnectivity();
+    if (connection == ConnectivityResult.mobile ||
+        connection == ConnectivityResult.wifi) {
+      try {
+        await homeCity.loadHome();
+      } catch (e) {
+        print(e);
+      }
+      return {
+        'databaseHandler': databaseHandler,
+        'citiesHandler': cities,
+        'homeCity': homeCity,
+        'settings': settings
+      };
+    } else {
+      return {
+        'databaseHandler': databaseHandler,
+        'citiesHandler': cities,
+        'homeCity': null,
+        'settings': settings
+      };
     }
-    print(homeCity.weather.timezone);
-    return {
-      'databaseHandler': databaseHandler,
-      'citiesHandler': cities,
-      'homeCity': homeCity,
-      'settings': settings
-    };
   }
 }

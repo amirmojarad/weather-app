@@ -28,7 +28,7 @@ class FileHandler {
   Future<void> write(Map<String, dynamic> json) async {
     await _fetchFile();
     String jsonEncoded = jsonEncode(json);
-    print("from write " + jsonEncoded);
+
     await file.writeAsString(jsonEncoded);
   }
 

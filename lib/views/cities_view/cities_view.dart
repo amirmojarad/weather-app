@@ -43,31 +43,44 @@ class _CitiesViewState extends State<CitiesView> {
                       widget.citiesHandler.cities.cities.length,
                       (index) {
                         var city = widget.citiesHandler.cities.cities[index];
-                        return CitiesCard(
-                          homeCity: widget.homeCity,
-                          city: city,
-                          setAsDefault: () async {
-                            var response =
-                                await API.makeOneCall(city.lat, city.lon);
-                            Weather weather = Weather.fromJson(
-                                await jsonDecode(response.body));
-                            widget.homeCity.changeHome(weather);
-                            await widget.homeCity.saveHome();
-                            return true;
-                          },
-                          delete: () async {
+                        return Dismissible(
+                          key: UniqueKey(),
+                          onDismissed: (direction) async {
                             bool isDeleted = false;
                             if (widget.citiesHandler.cities.cities
                                 .contains(city)) {
                               widget.citiesHandler.cities.cities.remove(city);
                               isDeleted = true;
                             }
-
                             if (isDeleted) await widget.citiesHandler.save();
-                          },
-                          setMainState: () async {
                             setState(() {});
                           },
+                          child: CitiesCard(
+                            homeCity: widget.homeCity,
+                            city: city,
+                            setAsDefault: () async {
+                              var response =
+                                  await API.makeOneCall(city.lat, city.lon);
+                              Weather weather = Weather.fromJson(
+                                  await jsonDecode(response.body));
+                              widget.homeCity.changeHome(weather);
+                              await widget.homeCity.saveHome();
+                              return true;
+                            },
+                            delete: () async {
+                              bool isDeleted = false;
+                              if (widget.citiesHandler.cities.cities
+                                  .contains(city)) {
+                                widget.citiesHandler.cities.cities.remove(city);
+                                isDeleted = true;
+                              }
+
+                              if (isDeleted) await widget.citiesHandler.save();
+                            },
+                            setMainState: () async {
+                              setState(() {});
+                            },
+                          ),
                         );
                       },
                     ),
@@ -75,9 +88,12 @@ class _CitiesViewState extends State<CitiesView> {
                 ),
               )
             : Center(
-                child: Text(
-                  "List Is Empty",
-                  style: Theme.of(context).textTheme.headline3,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 18.0),
+                  child: Text(
+                    "List Is Empty",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
                 ),
               ),
       ),
