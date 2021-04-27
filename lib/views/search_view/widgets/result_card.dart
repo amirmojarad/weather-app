@@ -42,16 +42,16 @@ class ResultCard extends StatelessWidget {
                     builder: (context) => FutureBuilder(
                       future: controller.getData(),
                       builder: (context, snapshot) => snapshot.hasData
-                          ? ResultCity(snapshot.data, () async {
-                              homeCity.changeHome(snapshot.data['weather']);
-                              await homeCity.saveHome();
-                            })
+                          ? ResultCity(snapshot.data['widget'], () async {
+                        homeCity.changeHome(snapshot.data['weather']);
+                        await homeCity.saveHome();
+                      })
                           : Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height,
-                              color: Colors.white,
-                              child:
-                                  Center(child: CircularProgressIndicator())),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          color: Colors.white,
+                          child:
+                          Center(child: CircularProgressIndicator())),
                     ),
                   ),
                 );

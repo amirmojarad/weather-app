@@ -19,12 +19,13 @@ class _ResultCityState extends State<ResultCity> {
     return Scaffold(
       body: widget.mainScreen,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).accentColor,
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              child: Icon(selected ? MyFlutterApp.home : MyFlutterApp.home,
-                  size: 30),
+              child: Icon(MyFlutterApp.home,
+                  color: Theme.of(context).backgroundColor, size: 30),
               onTap: () async {
                 setState(() {
                   selected = !selected;
@@ -37,7 +38,8 @@ class _ResultCityState extends State<ResultCity> {
           )
         ],
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(Icons.arrow_back_ios,
+              color: Theme.of(context).backgroundColor),
           onPressed: () {
             Navigator.pop(context);
           },
