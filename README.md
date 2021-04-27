@@ -22,15 +22,15 @@ Weather Forecast Application with [OpenWeatherMap](https://openweathermap.org/ap
 <table>
   <tr>
     <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png" width="500px" height = "700px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png" width="600px" height = "800px">
     </td>
     
    <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png" width="500px" height = "700px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png" width="600px" height = "800px">
    </td>
    
    <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="500px" height = "700px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="600px" height = "800px">
    </td>
   
   </tr>
