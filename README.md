@@ -1,6 +1,9 @@
 # weather
-https://github.com/amirmojarad/weather-app/releases/download/1.0/app-release.apk
+
 Weather Forecast Application with [OpenWeatherMap](https://openweathermap.org/api) API with Flutter!
+
+## Download
+Download apk from [here](https://github.com/amirmojarad/weather-app/releases/download/1.0/app-release.apk)
 
 ## 🚀 Features
 
