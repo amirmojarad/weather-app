@@ -8,10 +8,10 @@ class Temp {
 
 Temp _$TempFromJson(Map<String, dynamic> json) {
   return Temp(
-      day: json["day"],
-      morn: json["morn"],
-      eve: json["eve"],
-      max: json["max"],
-      min: json["min"],
-      night: json["night"]);
+      day: double.parse(json["day"].toString()),
+      morn: double.parse(json["morn"].toString()),
+      eve: double.parse(json["eve"].toString()),
+      max: double.parse(json["max"].toString()),
+      min: double.parse(json["min"].toString()),
+      night: double.parse(json["night"].toString()));
 }

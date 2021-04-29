@@ -55,7 +55,7 @@ class _CityViewState extends State<CityView> {
                 width: device.width,
                 height: device.height <= 600
                     ? device.height / 1.4
-                    : device.height / 1.9,
+                    : device.height / 1.5,
                 child: Padding(
                   padding: EdgeInsets.only(top: device.height / 50),
                   child: buildCurrentData(context, controller.weather),
