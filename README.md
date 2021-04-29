@@ -2,6 +2,9 @@
 
 Weather Forecast Application with [OpenWeatherMap](https://openweathermap.org/api) API with Flutter!
 
+## Download
+Download apk from [here](https://github.com/amirmojarad/weather-app/releases/download/1.0/app-release.apk)
+
 ## 🚀 Features
 
 * Weather Forecast For a Week
@@ -22,15 +25,15 @@ Weather Forecast Application with [OpenWeatherMap](https://openweathermap.org/ap
 <table>
   <tr>
     <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png" width="600px" height = "800px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/main.png" width="600px" height = "700px">
     </td>
     
    <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png" width="600px" height = "800px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/search.png" width="600px" height = "700px">
    </td>
    
    <td>
-  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="600px" height = "800px">
+  <img src="https://github.com/amirmojarad/weather-app/blob/main/screenshots/cities.png" width="600px" height = "700px">
    </td>
   
   </tr>
